@@ -284,8 +284,13 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         }
     }
     private void nuevoPrestamo(){
-        desktopPane.add(new FichaPrestamo(new Prestamo()));
-        desktopPane.selectFrame(false);
+        try {
+            desktopPane.add(Prestamos.fichaPrestamo(new Prestamo()));
+            // desktopPane.add(new FichaPrestamo(new Prestamo()));
+            desktopPane.selectFrame(false);
+        } catch (Exception e) {
+            SwgAuxiliar.msgExcepcion(e);
+        }
     }
 
     private void loginPassword() {

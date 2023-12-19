@@ -11,3 +11,13 @@ SELECT * FROM libro
 INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 09:00:22,SELECT * FROM libro)
 Usuario actual desconectado a las 09:00:50
 INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 09:00:50,Usuario actual desconectado a las 09:00:50)
+Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (11:06:42)
+INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 11:06:42,Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (11:06:42))
+SELECT id,nombre,autor,editorial,categoria FROM libro WHERE id = 0
+INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 11:06:48,SELECT id,nombre,autor,editorial,categoria FROM libro WHERE id = 0)
+SELECT id,nombre,apellidos FROM usuario WHERE id = 0
+INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 11:06:48,SELECT id,nombre,apellidos FROM usuario WHERE id = 0)
+SELECT id,categoria FROM categoria
+INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 11:06:48,SELECT id,categoria FROM categoria)
+SELECT id,nombre,autor,editorial,categoria FROM libro
+INSERT INTO historico (user,fecha,info) VALUES (admin,2023-12-19 11:06:57,SELECT id,nombre,autor,editorial,categoria FROM libro)
