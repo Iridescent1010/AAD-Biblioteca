@@ -48,7 +48,7 @@ que no es un nombre válido en windows. He renombrado estos archivos a `Auxiliar
  
 El proyecto que ha dado el profe ya implementa **Modelo-Vista-Controlador**,
 tenemos que implementar el patrón **observer** y utilizar herramientas de
-corresponendia objeto-relacional (**Hibernate**) para la persistencia en la
+corresponencia objeto-relacional (**Hibernate** con **JPA**) para la persistencia en la
 base de datos.
  
 - Cambiar el código del botón de `nuevoPrestamo()` en `FormMain`
