@@ -1,6 +1,6 @@
 package singleton;
 
-import helper.Aux;
+import helper.Auxiliary;
 import helper.EncriptacionDesencriptacion;
 
 import java.io.FileReader;
@@ -119,7 +119,7 @@ public class Configuracion {
                 p.setProperty("user", conf.user);
                 try {
                     p.setProperty("password", EncriptacionDesencriptacion.encriptar(conf.password, claveSecreta));
-                    p.store(new FileWriter(FILE_CONF), String.format("Actualizado el %s", Aux.dameFechaActual()));
+                    p.store(new FileWriter(FILE_CONF), String.format("Actualizado el %s", Auxiliary.dameFechaActual()));
                     conf = null;
                 } catch (Exception e) {
                     throw new RuntimeException(e);

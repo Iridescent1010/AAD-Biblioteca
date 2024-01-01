@@ -3,7 +3,7 @@ package helper;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Aux {
+public class Auxiliary {
     public static String dameFechaActual() {
         // Obtener la fecha actual
         LocalDate fechaActual = LocalDate.now();
