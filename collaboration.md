@@ -1,17 +1,48 @@
 # Proyecto acceso a datos ORM
 
-## Resumen
+:feelsgood::feelsgood::feelsgood::feelsgood:
 
-- Proyecto a medias
-- Implementar patrón **Observer** 
-    - **Modelo Vista Controlador** ya está implementado
-- Presentación
-    - Correspondencia
-    - Implementación de los patrones
-    - Cambios en el MVC
-    - Dificultades y soluciones
+## ✅ Tareas
 
-## ✅ Organización
+### Programa
+
+#### 1. Implementar correspondencia con Hibernate y JPA
+
+- [ ] Añadir hibernate al proyecto (Instrucciones en la presentación)
+- [ ] Crear correspondencia con la base de datos (Generate Persistence Mapping)
+- [ ] Implementar de nuevo las clases DAO [`modelo.dao`](./Biblioteca%20MVC/src/modelo/dao/), esta parte es difícil.
+    - [ ] `CategoriaDAOHibernate`
+    - [ ] `HistoricoDAOHibernate`
+    - [ ] `LibroDAOHibernate`
+    - [ ] `PrestamoDAOHibernate`
+    - [ ] `UsuarioDAOHibernate`
+     
+> Probablemente surjan conflictos entre las clases POJO que ya existen y las clases POJO que se generan al crear la correspondencia.
+
+#### 2. Implementar patrón Observer
+
+Para que la interfaz refleje las últimas modificaciones que ocurran en los datos.
+
+> Creo que lo mejor será estudiar el patrón Observer en un ejemplo más pequeño antes de implementarlo en el proyecto.
+
+#### 3. Revisar implementación del patrón **MVC** (Modelo Vista Controlador)
+
+#### 4. Extra (nuevas funcionalidades)
+
+> "Estas nuevas funcionalidades inventadas por el grupo serán tenidas en cuenta en la nota."
+
+### Presentación
+
+> La presentación es el [`readme.md`](./readme.md)
+
+- Duración: **10 minutos** (2:30 por alumno)
+- Explicar **correspondencia** entre clases y tablas
+- Explicar implementación de **Observer**
+- Explicar revisión del **MVC** (Modelo-Vista-Controlador)
+- **Problemas** encontrados y **soluciones** a esos problemas 
+
+
+## 🎯 Objetivos
 
 > ### Semana 1 (19/12/2023 - 24/12/2023)
 > 
@@ -22,6 +53,8 @@
 
 > ### Semana 2 (25/12/2023 - 31/12/2023)
 >
+> 🎄 🎅
+> 
 
 > ### Semana 3(1/1/2024 - 7/1/2024) 
 > 
