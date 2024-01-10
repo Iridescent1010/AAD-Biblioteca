@@ -56,9 +56,19 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 > 🎄 🎅
 > 
 
-> ### Semana 3(1/1/2024 - 7/1/2024) 
+> ### Semana 3 (1/1/2024 - 7/1/2024) 
 > 
 > - Ejemplo patrón **Observer**
+
+> ### Semana 4 (10/1/2024 - 14/1/2024)
+>
+> Ridu: Pasar proyecto a maven
+> - `git clone https://github.com/Iridescent1010/AAD-Biblioteca.git`
+> - `git -b checkout maven`
+> - Creas aquí tu carpeta con el proyecto en maven =)
+> - `git add -A`
+> - `git commit -m "tu mensaje"`
+> - `git push`
 
 ## 📄 Registro de cambios
 
