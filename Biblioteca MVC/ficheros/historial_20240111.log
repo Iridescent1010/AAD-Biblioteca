@@ -1,0 +1,13 @@
+Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (09:02:16)
+Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (09:05:29)
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:05:29,Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (09:05:29))
+SELECT * FROM libro
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:05:32,SELECT * FROM libro)
+SELECT id,categoria FROM categoria
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:05:36,SELECT id,categoria FROM categoria)
+Usuario actual desconectado a las 09:05:42
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:05:42,Usuario actual desconectado a las 09:05:42)
+Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (09:26:17)
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:26:17,Usuario conectado: admin a jdbc:mysql://127.0.0.1:3306/BIBLIOTECA (09:26:17))
+Usuario actual desconectado a las 09:26:29
+INSERT INTO historico (user,fecha,info) VALUES (admin,2024-01-11 09:26:29,Usuario actual desconectado a las 09:26:29)

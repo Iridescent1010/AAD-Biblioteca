@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/BIBLIOTECA</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="connection.username">admin</property>
+    <property name="connection.password">pwd13</property>
+    <mapping class="modelo.CategoriaDTO"/>
+      <mapping class="modelo.HistoricoDTO"/>
+    <mapping class="modelo.LibroDTO"/>
+    <mapping class="modelo.PrestamosDTO"/>
+    <mapping class="modelo.UsuarioDTO"/>
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
