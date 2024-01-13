@@ -8,14 +8,14 @@
 
 #### 1. Implementar correspondencia con Hibernate y JPA
 
-- [ ] Añadir hibernate al proyecto (Instrucciones en la presentación)
-- [ ] Crear correspondencia con la base de datos (Generate Persistence Mapping)
+- [x] Añadir hibernate al proyecto (Instrucciones en la presentación)
+- [x] Crear correspondencia con la base de datos (Generate Persistence Mapping)
 - [ ] Implementar de nuevo las clases DAO [`modelo.dao`](./Biblioteca%20MVC/src/modelo/dao/), esta parte es difícil.
-    - [ ] `CategoriaDAOHibernate`
-    - [ ] `HistoricoDAOHibernate`
-    - [ ] `LibroDAOHibernate`
-    - [ ] `PrestamoDAOHibernate`
-    - [ ] `UsuarioDAOHibernate`
+    - [ ] `CategoriaDAOHibernate` [Neka]
+    - [ ] `HistoricoDAOHibernate` [Vts]
+    - [ ] `LibroDAOHibernate` [Neka]
+    - [ ] `PrestamoDAOHibernate` [Iridescent]
+    - [ ] `UsuarioDAOHibernate` [Iridescent]
      
 > Probablemente surjan conflictos entre las clases POJO que ya existen y las clases POJO que se generan al crear la correspondencia.
 
@@ -69,10 +69,17 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 > - `git add -A`
 > - `git commit -m "tu mensaje"`
 > - `git push`
+>
+> Crear implementación del DAO para Hibernate
 
 ## 📄 Registro de cambios
 
-### 1/1/2024
+### 11/01/2024
+
+Añadida la dependencia de Hibernate y realizada la correspondencia con la
+base de datos
+
+### 1/01/2024
 
 Añadida inserción de categorías al archivo `datos.sql`.
 
