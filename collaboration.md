@@ -17,6 +17,12 @@
     - [ ] `PrestamoDAOHibernate` [Iridescent]
     - [ ] `UsuarioDAOHibernate` [Iridescent]
      
+> [!IMPORTANT]  
+> - Hay un problema con las interfaces DAO (`CategoriaDAO`, `HistoricoDAO`...)
+> - Ahora mismo utilizan las clases POJO antiguas
+> - Hay que cambiarlas (o crear algunas nuevas) para que trabajen con las clases POJO que tienen **anotaciones JPA**
+> - Al final la solución ha sido añadir las anotaciones JPA a las clases originales =)
+     
 > Probablemente surjan conflictos entre las clases POJO que ya existen y las clases POJO que se generan al crear la correspondencia.
 
 #### 2. Implementar patrón Observer
