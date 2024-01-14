@@ -1,6 +1,7 @@
-package modelo;
+package modelo.old;
 
 import excepciones.CampoVacioExcepcion;
+import modelo.Entidad;
 import modelo.dao.helper.Entidades;
 
 /**
@@ -8,7 +9,7 @@ import modelo.dao.helper.Entidades;
  * @author AGE
  * @version 2
  */
-public class Libro extends Entidad{
+public class Libro extends Entidad {
     private int id;
     private String nombre;
     private String autor;

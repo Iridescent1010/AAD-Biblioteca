@@ -1,6 +1,6 @@
 package presentador;
 
-import modelo.Categoria;
+import modelo.old.Categoria;
 
 import java.util.List;
 

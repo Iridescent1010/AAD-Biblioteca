@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.Usuario;
+import modelo.old.Usuario;
 import presentador.PresentadorUsuario;
 import presentador.VistaUsuarios;
 import vista.componentes.TablaUsuarios;

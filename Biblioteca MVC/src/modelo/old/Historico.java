@@ -1,4 +1,6 @@
-package modelo;
+package modelo.old;
+
+import modelo.Entidad;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

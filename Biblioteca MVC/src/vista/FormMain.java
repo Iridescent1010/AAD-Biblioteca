@@ -1,10 +1,10 @@
 package vista;
 
 import excepciones.CampoVacioExcepcion;
-import modelo.Categoria;
-import modelo.Libro;
-import modelo.Prestamo;
-import modelo.Usuario;
+import modelo.old.Categoria;
+import modelo.old.Libro;
+import modelo.old.Prestamo;
+import modelo.old.Usuario;
 import modelo.dao.helper.Entidades;
 import vista.componentes.MiBarraDeEstado;
 import vista.helper.*;

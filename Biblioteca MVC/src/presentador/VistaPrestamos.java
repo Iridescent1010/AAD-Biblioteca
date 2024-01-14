@@ -1,6 +1,6 @@
 package presentador;
 
-import modelo.Prestamo;
+import modelo.old.Prestamo;
 
 import java.util.List;
 

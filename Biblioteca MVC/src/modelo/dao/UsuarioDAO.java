@@ -1,7 +1,7 @@
 package modelo.dao;
 
 import excepciones.CampoVacioExcepcion;
-import modelo.Usuario;
+import modelo.old.Usuario;
 
 import java.io.IOException;
 import java.sql.SQLException;

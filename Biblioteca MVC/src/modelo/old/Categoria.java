@@ -1,6 +1,8 @@
-package modelo;
+package modelo.old;
 
 import excepciones.CampoVacioExcepcion;
+import modelo.Entidad;
+
 /**
  * Esta clase (POJO) será una representación de la tabla categoria
  * @author AGE

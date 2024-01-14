@@ -1,12 +1,13 @@
-package modelo;
+package modelo.old;
 import excepciones.CampoVacioExcepcion;
+import modelo.Entidad;
 
 /**
  * Esta clase (POJO) será una representación de la tabla usuario
  * @author AGE
  * @version 2
  */
-public class Usuario extends Entidad{
+public class Usuario extends Entidad {
     private int id;
     private String nombre;
     private String apellidos;

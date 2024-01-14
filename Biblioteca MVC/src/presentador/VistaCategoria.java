@@ -1,7 +1,7 @@
 package presentador;
 
 
-import modelo.Categoria;
+import modelo.old.Categoria;
 
 
 public interface VistaCategoria {

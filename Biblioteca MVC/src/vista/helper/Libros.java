@@ -2,7 +2,7 @@ package vista.helper;
 
 
 import modelo.BusquedaLibro;
-import modelo.Libro;
+import modelo.old.Libro;
 import modelo.dao.CategoriaDAO;
 import modelo.dao.CategoriaDAOImpl;
 import modelo.dao.LibroDAO;

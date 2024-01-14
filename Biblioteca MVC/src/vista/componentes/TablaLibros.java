@@ -1,10 +1,8 @@
 package vista.componentes;
 
-import excepciones.CampoVacioExcepcion;
-import modelo.Libro;
+import modelo.old.Libro;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.util.List;
 /**
  * Esta clase permite crear una tabla donde mostrar la información de los Libros

@@ -1,7 +1,7 @@
 package modelo.dao;
 
 import modelo.dao.helper.LogFile;
-import modelo.Prestamo;
+import modelo.old.Prestamo;
 import singleton.ConexionMySQL;
 import java.sql.*;
 import java.time.LocalDateTime;

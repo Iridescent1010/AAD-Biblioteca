@@ -1,6 +1,6 @@
 package presentador;
 
-import modelo.Usuario;
+import modelo.old.Usuario;
 
 import java.util.List;
 

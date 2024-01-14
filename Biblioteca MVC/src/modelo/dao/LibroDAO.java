@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import modelo.Libro;
+import modelo.old.Libro;
 
 import java.io.IOException;
 import java.sql.SQLException;

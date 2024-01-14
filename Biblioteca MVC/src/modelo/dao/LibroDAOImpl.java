@@ -4,7 +4,7 @@ import excepciones.CampoVacioExcepcion;
 import modelo.dao.helper.LogFile;
 import modelo.dao.helper.Sql;
 import singleton.ConexionMySQL;
-import modelo.Libro;
+import modelo.old.Libro;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

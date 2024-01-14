@@ -1,9 +1,9 @@
 package modelo.dao.helper;
 
-import modelo.Categoria;
-import modelo.Libro;
-import modelo.Prestamo;
-import modelo.Usuario;
+import modelo.old.Categoria;
+import modelo.old.Libro;
+import modelo.old.Prestamo;
+import modelo.old.Usuario;
 import modelo.dao.CategoriaDAOImpl;
 import modelo.dao.LibroDAOImpl;
 import modelo.dao.PrestamoDAOImpl;

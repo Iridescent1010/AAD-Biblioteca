@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import modelo.Usuario;
+import modelo.old.Usuario;
 
 import java.util.List;
 

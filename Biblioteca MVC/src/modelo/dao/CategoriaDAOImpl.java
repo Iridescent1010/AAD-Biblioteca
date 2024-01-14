@@ -3,7 +3,7 @@ package modelo.dao;
 import excepciones.CampoVacioExcepcion;
 import modelo.dao.helper.LogFile;
 import singleton.ConexionMySQL;
-import modelo.Categoria;
+import modelo.old.Categoria;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

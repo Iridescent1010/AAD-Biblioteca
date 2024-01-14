@@ -1,12 +1,13 @@
 package modelo.dao;
 
-import modelo.Categoria;
+import modelo.old.Categoria;
 
 import java.util.List;
 
 public class CategoriaDAOHibernate implements CategoriaDAO {
     @Override
     public boolean inserta(Categoria categoria) throws Exception {
+
         return false;
     }
 

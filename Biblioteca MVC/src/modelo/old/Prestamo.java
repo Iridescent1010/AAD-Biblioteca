@@ -1,5 +1,6 @@
-package modelo;
+package modelo.old;
 
+import modelo.Entidad;
 import modelo.dao.helper.Entidades;
 
 import java.time.LocalDateTime;

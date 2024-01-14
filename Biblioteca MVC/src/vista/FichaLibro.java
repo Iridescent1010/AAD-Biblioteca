@@ -1,8 +1,8 @@
 package vista;
 
 import excepciones.CampoVacioExcepcion;
-import modelo.Categoria;
-import modelo.Libro;
+import modelo.old.Categoria;
+import modelo.old.Libro;
 import presentador.PresentadorLibro;
 import presentador.VistaLibro;
 import vista.helper.SwgAuxiliar;

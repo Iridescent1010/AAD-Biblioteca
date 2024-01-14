@@ -1,7 +1,10 @@
 package vista;
 
-import excepciones.CampoVacioExcepcion;
 import modelo.*;
+import modelo.old.Categoria;
+import modelo.old.Libro;
+import modelo.old.Prestamo;
+import modelo.old.Usuario;
 import presentador.PresentadorPrestamo;
 import presentador.VistaPrestamo;
 import vista.helper.Libros;
@@ -14,8 +17,6 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 /**
  * Formulario que permite interactuar (insertar, modificar o borrar)

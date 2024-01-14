@@ -2,7 +2,7 @@ package vista.helper;
 
 
 import modelo.BusquedaUsuario;
-import modelo.Usuario;
+import modelo.old.Usuario;
 import modelo.dao.UsuarioDAO;
 import modelo.dao.UsuarioDAOImpl;
 import presentador.PresentadorUsuario;

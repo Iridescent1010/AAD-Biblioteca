@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import modelo.Prestamo;
+import modelo.old.Prestamo;
 
 import java.util.List;
 
