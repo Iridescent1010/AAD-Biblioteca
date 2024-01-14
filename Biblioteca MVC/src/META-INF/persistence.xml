@@ -5,18 +5,17 @@
              version="3.0">
   <!--
     Este documento lo he copiado del ejercicio 3.4 =)
-    Creo que es necesario para poder utilizar EntitiyManager
+    Es necesario para poder utilizar EntityManager
   -->
   <persistence-unit name="aad_biblioteca">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>modelo.CategoriaDTO</class>
-    <class>modelo.HistoricoDTO</class>
-    <class>modelo.LibroDTO</class>
-    <class>modelo.PrestamosDTO</class>
-    <class>modelo.UsuarioDTO</class>
+    <class>modelo.Categoria</class>
+    <class>modelo.Historico</class>
+    <class>modelo.Libro</class>
+    <class>modelo.Prestamo</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/proyecto_orm"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/BIBLIOTECA"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
       <property name="hibernate.connection.username" value="admin"/>
       <property name="hibernate.connection.password" value="pwd13"/>

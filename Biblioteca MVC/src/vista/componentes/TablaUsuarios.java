@@ -1,6 +1,6 @@
 package vista.componentes;
 
-import modelo.old.Usuario;
+import modelo.Usuario;
 import javax.swing.*;
 import java.util.List;
 /**

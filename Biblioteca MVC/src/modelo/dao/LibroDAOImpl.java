@@ -4,7 +4,7 @@ import excepciones.CampoVacioExcepcion;
 import modelo.dao.helper.LogFile;
 import modelo.dao.helper.Sql;
 import singleton.ConexionMySQL;
-import modelo.old.Libro;
+import modelo.Libro;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class LibroDAOImpl implements LibroDAO {
             pstmt.setString(1,libro.getNombre());
             pstmt.setString(2,libro.getAutor());
             pstmt.setString(3,libro.getEditorial());
-            pstmt.setInt(4,libro.getCategoria());
+            pstmt.setInt(4,libro.getIdCategoria());
             insertado=pstmt.executeUpdate()==1;
             if (insertado) {
                 ResultSet rs = pstmt.getGeneratedKeys();
@@ -47,7 +47,7 @@ public class LibroDAOImpl implements LibroDAO {
         sql = sql.replaceFirst("\\?",libro.getNombre());
         sql = sql.replaceFirst("\\?",libro.getAutor());
         sql = sql.replaceFirst("\\?",libro.getEditorial());
-        sql = sql.replaceFirst("\\?",String.valueOf(libro.getCategoria()));
+        sql = sql.replaceFirst("\\?",String.valueOf(libro.getIdCategoria()));
         LogFile.saveLOG(sql);
     }
 
@@ -58,7 +58,7 @@ public class LibroDAOImpl implements LibroDAO {
             pstmt.setString(1,libro.getNombre());
             pstmt.setString(2,libro.getAutor());
             pstmt.setString(3,libro.getEditorial());
-            pstmt.setInt(4, libro.getCategoria());
+            pstmt.setInt(4, libro.getIdCategoria());
             pstmt.setInt(5, libro.getId());
             actualizado=pstmt.executeUpdate()==1;
         }
@@ -69,7 +69,7 @@ public class LibroDAOImpl implements LibroDAO {
         sql = sql.replaceFirst("\\?",libro.getNombre());
         sql = sql.replaceFirst("\\?",libro.getAutor());
         sql = sql.replaceFirst("\\?",libro.getEditorial());
-        sql = sql.replaceFirst("\\?",String.valueOf(libro.getCategoria()));
+        sql = sql.replaceFirst("\\?",String.valueOf(libro.getIdCategoria()));
         sql = sql.replaceFirst("\\?",String.valueOf(libro.getId()));
         LogFile.saveLOG(sql);
     }
@@ -110,7 +110,7 @@ public class LibroDAOImpl implements LibroDAO {
                 libro.setNombre(rs.getString("nombre"));
                 libro.setAutor(rs.getString("autor"));
                 libro.setEditorial(rs.getString("editorial"));
-                libro.setCategoria(rs.getInt("categoria"));
+                libro.setIdCategoria(rs.getInt("categoria"));
                 lista.add(libro);
             }
         }
@@ -186,7 +186,7 @@ public class LibroDAOImpl implements LibroDAO {
                     libro.setNombre(rs.getString("nombre"));
                     libro.setAutor(rs.getString("autor"));
                     libro.setEditorial(rs.getString("editorial"));
-                    libro.setCategoria(rs.getInt("categoria"));
+                    libro.setIdCategoria(rs.getInt("categoria"));
                     lista.add(libro);
                 }
             }
@@ -216,7 +216,7 @@ public class LibroDAOImpl implements LibroDAO {
                 libro.setNombre(rs.getString("nombre"));
                 libro.setAutor(rs.getString("autor"));
                 libro.setEditorial(rs.getString("editorial"));
-                libro.setCategoria(rs.getInt("categoria"));
+                libro.setIdCategoria(rs.getInt("categoria"));
             }
         }
         return libro;

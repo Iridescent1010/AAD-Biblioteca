@@ -1,4 +1,4 @@
-package modelo;
+package modelo.old;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

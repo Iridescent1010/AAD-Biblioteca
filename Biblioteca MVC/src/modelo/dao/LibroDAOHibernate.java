@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import modelo.old.Libro;
+import modelo.Libro;
 
 import java.util.List;
 

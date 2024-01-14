@@ -1,6 +1,6 @@
 package vista;
 import presentador.PresentadorCategoria;
-import modelo.old.Categoria;
+import modelo.Categoria;
 import vista.componentes.MiModeloDatosSoloLectura;
 import presentador.VistaCategorias;
 import vista.helper.Categorias;

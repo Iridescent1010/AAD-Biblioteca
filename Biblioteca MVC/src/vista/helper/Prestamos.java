@@ -1,7 +1,7 @@
 package vista.helper;
 
 
-import modelo.old.Prestamo;
+import modelo.Prestamo;
 import modelo.dao.*;
 import presentador.PresentadorPrestamo;
 import vista.FichaPrestamo;

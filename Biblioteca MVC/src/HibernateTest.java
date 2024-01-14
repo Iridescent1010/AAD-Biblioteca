@@ -1,3 +1,5 @@
+import modelo.Categoria;
+import modelo.dao.CategoriaDAOHibernate;
 import modelo.dao.helper.HibernateUtilJPA;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +12,16 @@ import org.hibernate.cfg.Configuration;
 public class HibernateTest {
     public static void main(String[] args) {
 
-        HibernateUtilJPA.getEntityManagerFactory().createEntityManager();
+        try {
+            Categoria c = new Categoria();
+            c.setCategoria("ciencia culo");
+            new CategoriaDAOHibernate(HibernateUtilJPA.getEntityManagerFactory()).inserta(c);
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         /*
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         try (Session session = sessionFactory.openSession()) {

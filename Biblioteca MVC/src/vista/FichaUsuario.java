@@ -1,7 +1,7 @@
 package vista;
 
 import excepciones.CampoVacioExcepcion;
-import modelo.old.Usuario;
+import modelo.Usuario;
 import presentador.PresentadorUsuario;
 import presentador.VistaUsuario;
 import vista.helper.SwgAuxiliar;

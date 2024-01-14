@@ -1,5 +1,5 @@
 package presentador;
-import modelo.old.Usuario;
+import modelo.Usuario;
 
 public interface VistaUsuario {
     void lanzar();

@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import modelo.old.Historico;
+import modelo.Historico;
 import modelo.dao.helper.LogFile;
 import singleton.ConexionMySQL;
 import singleton.Configuracion;

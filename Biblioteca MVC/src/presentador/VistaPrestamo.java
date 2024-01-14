@@ -1,8 +1,8 @@
 package presentador;
 
 
-import modelo.old.Categoria;
-import modelo.old.Prestamo;
+import modelo.Categoria;
+import modelo.Prestamo;
 import java.util.List;
 
 public interface VistaPrestamo {

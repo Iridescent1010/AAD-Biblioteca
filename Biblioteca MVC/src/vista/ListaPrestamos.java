@@ -1,7 +1,7 @@
 package vista;
 
-import modelo.old.Categoria;
-import modelo.old.Prestamo;
+import modelo.Categoria;
+import modelo.Prestamo;
 import presentador.PresentadorPrestamo;
 import presentador.VistaPrestamos;
 import vista.componentes.MiModeloDatosSoloLectura;

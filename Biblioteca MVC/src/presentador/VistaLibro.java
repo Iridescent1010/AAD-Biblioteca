@@ -2,8 +2,8 @@ package presentador;
 
 
 
-import modelo.old.Categoria;
-import modelo.old.Libro;
+import modelo.Categoria;
+import modelo.Libro;
 import java.util.List;
 
 public interface VistaLibro {

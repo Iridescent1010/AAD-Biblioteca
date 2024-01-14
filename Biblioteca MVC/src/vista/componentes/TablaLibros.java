@@ -1,6 +1,6 @@
 package vista.componentes;
 
-import modelo.old.Libro;
+import modelo.Libro;
 
 import javax.swing.*;
 import java.util.List;

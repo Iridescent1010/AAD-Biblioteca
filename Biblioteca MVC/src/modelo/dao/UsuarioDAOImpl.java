@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.dao.helper.LogFile;
 import modelo.dao.helper.Sql;
-import modelo.old.Usuario;
+import modelo.Usuario;
 import singleton.ConexionMySQL;
 
 /**

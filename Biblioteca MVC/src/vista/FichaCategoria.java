@@ -2,7 +2,7 @@ package vista;
 
 import presentador.PresentadorCategoria;
 import excepciones.CampoVacioExcepcion;
-import modelo.old.Categoria;
+import modelo.Categoria;
 import vista.helper.SwgAuxiliar;
 import presentador.VistaCategoria;
 

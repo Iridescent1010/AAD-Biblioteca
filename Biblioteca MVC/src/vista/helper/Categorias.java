@@ -1,6 +1,6 @@
 package vista.helper;
 
-import modelo.old.Categoria;
+import modelo.Categoria;
 import modelo.dao.CategoriaDAO;
 import modelo.dao.CategoriaDAOImpl;
 import presentador.PresentadorCategoria;

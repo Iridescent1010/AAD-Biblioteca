@@ -1,4 +1,6 @@
-package modelo;
+package modelo.old;
+
+import modelo.Libro;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,6 +22,10 @@ public class PrestamosDTO {
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
     private UsuarioDTO usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idLibro", referencedColumnName = "id")
+    private Libro libro;
 
     public Timestamp getFechaPrestamo() {
         return fechaPrestamo;
