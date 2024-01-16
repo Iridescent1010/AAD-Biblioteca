@@ -1,15 +1,31 @@
 package modelo;
 import excepciones.CampoVacioExcepcion;
+import modelo.old.PrestamosDTO;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Esta clase (POJO) será una representación de la tabla usuario
  * @author AGE
  * @version 2
  */
-public class Usuario extends Entidad{
+@Entity
+@Table(name = "usuario", schema = "BIBLIOTECA")
+public class Usuario extends Entidad {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
     private int id;
+    @Basic
+    @Column(name = "nombre", nullable = true, length = -1)
     private String nombre;
+    @Basic
+    @Column(name = "apellidos", nullable = true, length = -1)
     private String apellidos;
+    @OneToMany(mappedBy = "usuario")
+    private Collection<PrestamosDTO> prestamos;
 
     /**
      * Getter para atributo id
@@ -58,14 +74,26 @@ public class Usuario extends Entidad{
             throw new CampoVacioExcepcion("APELLIDOS");
         else this.apellidos = apellidos;
     }
-    /**
-     * realiza una copia de otro objeto usuario en esta instancia
-     * @param usuario objeto desde donde copiar la información
-     */
-    public void clona(Usuario usuario){
-        this.id=usuario.getId();
-        this.nombre=usuario.getNombre();
-        this.apellidos=usuario.getApellidos();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario that = (Usuario) o;
+        return id == that.id && Objects.equals(nombre, that.nombre) && Objects.equals(apellidos, that.apellidos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, apellidos);
+    }
+
+    public Collection<PrestamosDTO> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(Collection<PrestamosDTO> prestamos) {
+        this.prestamos = prestamos;
     }
     @Override
     public String toString(){

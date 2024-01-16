@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import excepciones.CampoVacioExcepcion;
 import modelo.Prestamo;
 /**
  * Esta será la intefaz para manejar los préstamos de la BD BIBLIOTECA

@@ -30,8 +30,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
     public boolean insertar(Prestamo prestamo) throws Exception {
         boolean insertado=false;
         try(PreparedStatement pstmt =con.prepareStatement(sqlINSERT,PreparedStatement.RETURN_GENERATED_KEYS)){
-            pstmt.setInt(1, prestamo.getIdLibro());
-            pstmt.setInt(2, prestamo.getIdUsuario());
+            pstmt.setInt(1, prestamo.getLibroId());
+            pstmt.setInt(2, prestamo.getUsuarioId());
             pstmt.setString(3, prestamo.getFechaPrestamo().format(formatter));
             insertado=(pstmt.executeUpdate()==1);
             if (insertado) {
@@ -44,8 +44,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
         return insertado;
     }
     private void grabaEnLogIns(Prestamo prestamo,String sql) throws Exception {
-        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getIdLibro()));
-        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getIdUsuario()));
+        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getLibroId()));
+        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getUsuarioId()));
         sql = sql.replaceFirst("\\?",prestamo.getFechaPrestamo().format(formatter));
         LogFile.saveLOG(sql);
     }
@@ -54,8 +54,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
     public boolean modificar(Prestamo prestamo) throws Exception {
         boolean actualizado;
         try (PreparedStatement pstmt = con.prepareStatement(sqlUPDATE)){
-            pstmt.setInt(1, prestamo.getIdLibro());
-            pstmt.setInt(2, prestamo.getIdUsuario());
+            pstmt.setInt(1, prestamo.getLibroId());
+            pstmt.setInt(2, prestamo.getUsuarioId());
             pstmt.setString(3, prestamo.getFechaPrestamo().format(formatter));
             pstmt.setInt(4, prestamo.getIdPrestamo());
             actualizado=pstmt.executeUpdate()==1;
@@ -64,8 +64,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
         return actualizado;
     }
     private void grabaEnLogUpd(Prestamo prestamo,String sql) throws Exception {
-        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getIdLibro()));
-        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getIdUsuario()));
+        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getLibroId()));
+        sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getUsuarioId()));
         sql = sql.replaceFirst("\\?",prestamo.getFechaPrestamo().format(formatter));
         sql = sql.replaceFirst("\\?",String.valueOf(prestamo.getIdPrestamo()));
         LogFile.saveLOG(sql);
@@ -104,8 +104,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
             while (rs.next()){
                 Prestamo prestamo =new Prestamo();
                 prestamo.setIdPrestamo(rs.getInt("idPrestamo"));
-                prestamo.setIdLibro(rs.getInt("idLibro"));
-                prestamo.setIdUsuario(rs.getInt("idUsuario"));
+                prestamo.setLibroId(rs.getInt("idLibro"));
+                prestamo.setUsuarioId(rs.getInt("idUsuario"));
                 prestamo.setFechaPrestamo(LocalDateTime.parse(rs.getString("fechaPrestamo"), formatter));
                 lista.add(prestamo);
             }
@@ -130,8 +130,8 @@ public class PrestamoDAOImpl implements PrestamoDAO {
             if (rs.next()){
                 prestamo =new Prestamo();
                 prestamo.setIdPrestamo(rs.getInt("idPrestamo"));
-                prestamo.setIdLibro(rs.getInt("idLibro"));
-                prestamo.setIdUsuario(rs.getInt("idUsuario"));
+                prestamo.setLibroId(rs.getInt("idLibro"));
+                prestamo.setUsuarioId(rs.getInt("idUsuario"));
                 prestamo.setFechaPrestamo(LocalDateTime.parse(rs.getString("fechaPrestamo"), formatter));
             }
         }

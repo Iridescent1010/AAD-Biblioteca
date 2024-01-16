@@ -1,10 +1,10 @@
-package modelo;
+package modelo.old;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "libro", schema = "BIBLIOTECA", catalog = "")
+@Table(name = "libro", schema = "BIBLIOTECA")
 public class LibroDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

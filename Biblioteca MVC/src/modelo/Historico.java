@@ -1,17 +1,33 @@
 package modelo;
 
+import modelo.Entidad;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Esta clase (POJO) será una representación de la tabla historico
  * @author AGE
  * @version 2
  */
+@Entity
+@Table(name = "historico", schema = "BIBLIOTECA")
 public class Historico extends Entidad {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "idHistorico", nullable = false)
     private int idHistorico;
+    @Basic
+    @Column(name = "user", nullable = true, length = -1)
     private String user;
-    private LocalDateTime fecha=LocalDateTime.now();
+    @Basic
+    @Column(name = "fecha", nullable = true)
+    private Timestamp fecha = Timestamp.valueOf(LocalDateTime.now());
+    @Basic
+    @Column(name = "info", nullable = true, length = -1)
     private String info;
 
     /**
@@ -58,21 +74,21 @@ public class Historico extends Entidad {
      * @return el valor del atributo fecha
      */
     public LocalDateTime getFecha() {
-        return fecha;
+        return fecha.toLocalDateTime();
     }
     /**
      * Getter para atributo fecha
      * @return el valor del atributo fecha en formato cadena
      */
     public String getFechaCad(){
-        return fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        return getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
     /**
      * Setter para asignar una fecha de prestamo nueva;
      * @param fecha nuevo valor para el atributo fecha
      */
     public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+        this.fecha = Timestamp.valueOf(fecha);
     }
 
     /**
@@ -96,4 +112,16 @@ public class Historico extends Entidad {
         return String.format("%d, %s, %s, %s ", idHistorico, user,getFechaCad(),info);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Historico that = (Historico) o;
+        return idHistorico == that.idHistorico && Objects.equals(user, that.user) && Objects.equals(fecha, that.fecha) && Objects.equals(info, that.info);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idHistorico, user, fecha, info);
+    }
 }

@@ -1,7 +1,10 @@
 package vista;
 
-import excepciones.CampoVacioExcepcion;
 import modelo.*;
+import modelo.Categoria;
+import modelo.Libro;
+import modelo.Prestamo;
+import modelo.Usuario;
 import presentador.PresentadorPrestamo;
 import presentador.VistaPrestamo;
 import vista.helper.Libros;
@@ -14,8 +17,6 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 /**
  * Formulario que permite interactuar (insertar, modificar o borrar)
@@ -317,7 +318,7 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
                 }
             } else busquedaUsuario.tipo=TipoBusqueda.TODOS;
             Usuarios.seleccionaUsuario(null,"Seleccione un usuario:",true,busquedaUsuario);
-            getPrestamo().setIdUsuario(busquedaUsuario.idSel);
+            getPrestamo().setUsuarioId(busquedaUsuario.idSel);
             actualizaformulario();
         } catch (NumberFormatException e) {
             SwgAuxiliar.msgError("Introduzca un valor númerico o desactive la busqueda por código de usuario");
@@ -351,7 +352,7 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
                 busquedaLibro.tipo = TipoBusqueda.TODOS;
             }
             Libros.seleccionaLibro(null,"Seleccione un libro:",true,busquedaLibro);
-            getPrestamo().setIdLibro(busquedaLibro.idSel);
+            getPrestamo().setLibroId(busquedaLibro.idSel);
             actualizaformulario();
         } catch (NumberFormatException e) {
             SwgAuxiliar.msgError("Introduzca un valor númerico o desactive la busqueda por código de libro");

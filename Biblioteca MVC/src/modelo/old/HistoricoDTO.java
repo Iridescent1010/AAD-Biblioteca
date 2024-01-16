@@ -1,11 +1,11 @@
-package modelo;
+package modelo.old;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "historico", schema = "BIBLIOTECA", catalog = "")
+@Table(name = "historico", schema = "BIBLIOTECA")
 public class HistoricoDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
