@@ -80,6 +80,15 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 
 ## 📄 Registro de cambios
 
+### 16/01/2024
+
+Implementaciones de Hibernate para las interfaces `CategoriaDAO` y `LibroDAO`
+
+### 14/01/2024
+
+Añadir anotaciones JPA a las clases POJO originales y realizar pruebas con
+Hibernate
+
 ### 11/01/2024
 
 Añadida la dependencia de Hibernate y realizada la correspondencia con la
