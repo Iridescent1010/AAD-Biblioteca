@@ -1,7 +1,12 @@
 import excepciones.CampoVacioExcepcion;
 import modelo.Categoria;
+import modelo.Libro;
 import modelo.dao.CategoriaDAO;
 import modelo.dao.CategoriaDAOHibernate;
+import modelo.dao.LibroDAO;
+import modelo.dao.LibroDAOHibernate;
+import modelo.dao.helper.HibernateUtilJPA;
+import singleton.Configuracion;
 
 /**
  * Es un método main para probar que la librería de hibernate
@@ -9,9 +14,14 @@ import modelo.dao.CategoriaDAOHibernate;
  */
 public class HibernateTest {
     static CategoriaDAO categoriaDAO = new CategoriaDAOHibernate();
+    static LibroDAO libroDAO = new LibroDAOHibernate();
     public static void main(String[] args) {
         try {
+            // Puede que de error sin esto
+            Configuracion.getInstance().setPassword("pwd13");
+            HibernateUtilJPA.suppressWarnings();
             testCategoria();
+            testLibro();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,5 +47,15 @@ public class HibernateTest {
         categoriaDAO.modificar(c1);
         System.out.println(categoriaDAO.leerAllCategorias());
         categoriaDAO.borrar(c.getId());
+    }
+
+    static void testLibro() throws Exception {
+        Libro lib = new Libro();
+        lib.setAutor("Migüel do crevantes");
+        lib.setNombre("super sayayin");
+        lib.setCategoria(categoriaDAO.categoria(1));
+        libroDAO.insertar(lib);
+        System.out.println(libroDAO.getLibro(lib.getId()));
+        System.out.println(lib.getCategoria());
     }
 }

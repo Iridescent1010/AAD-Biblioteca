@@ -46,10 +46,10 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 #### Martina:
 
 1. De repente no va
-    - Solución: `Rebuild Project` ([StackOverflow](https://stackoverflow.com/questions/12132003/getting-cannot-find-symbol-in-java-project-in-intellij))
-    - [evidencia visual](./media/build_failed.jpeg)
-
-
+  - Solución: `Rebuild Project` ([StackOverflow](https://stackoverflow.com/questions/12132003/getting-cannot-find-symbol-in-java-project-in-intellij))
+  - ![evidencia visual](./media/build_failed.jpeg)
+2. Eliminar archivos .jar de git ([StackOverflow](https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore))
+  - `git rm --cached <file>`
 
 ```
 Por ejemplo, (no) pasar el proyecto a maven.

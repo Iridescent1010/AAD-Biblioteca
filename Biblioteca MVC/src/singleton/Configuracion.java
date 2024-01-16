@@ -33,6 +33,7 @@ public class Configuracion {
         url = p.getProperty("url");
         user = p.getProperty("user");
         password = p.getProperty("password");
+
     }
 
     /**

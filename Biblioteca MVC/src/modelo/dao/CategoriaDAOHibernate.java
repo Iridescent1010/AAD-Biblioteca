@@ -2,6 +2,7 @@ package modelo.dao;
 
 import modelo.Categoria;
 import modelo.dao.helper.HibernateUtilJPA;
+import modelo.dao.helper.LogFile;
 import presentador.PresentadorUsuario;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
             man.persist(categoria);
             man.flush();
             trans.commit();
+            LogFile.saveLOG("[Hibernate] Categoria insertada" + categoria.getId());
             return true;
         } catch (Exception e) {
             if (trans != null && trans.isActive())
@@ -47,6 +49,7 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
             man.merge(categoria);
             man.flush();
             trans.commit();
+            LogFile.saveLOG("[Hibernate] Categoría actualizada" + categoria.getId());
             return true;
         } catch (Exception e) {
             if (trans != null && trans.isActive())
@@ -66,10 +69,10 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
             if (categoria == null) return false; // Si no existe no se puede borrar
             trans = man.getTransaction();
             trans.begin();
-            ;
             categoria = man.merge(categoria);
             man.remove(categoria);
             trans.commit();
+            LogFile.saveLOG("[Hibernate] Categoria eliminada" + categoria.getId());
             return true;
         } catch (Exception e) {
             if (trans != null && trans.isActive())
@@ -86,9 +89,12 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
     public Categoria categoria(int id) throws Exception {
         EntityManager man = managerFactory.createEntityManager();
         try {
+            LogFile.saveLOG("[Hibernate] Categoria seleccionada " + id);
             return man.find(Categoria.class, id);
         } catch (Exception e) {
             throw new Exception("Error: Imposible seleccionar la categoría", e);
+        } finally {
+            man.close();
         }
     }
 
@@ -96,10 +102,13 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
     public List<Categoria> leerAllCategorias() throws Exception {
         EntityManager man = managerFactory.createEntityManager();
         try {
+            LogFile.saveLOG("[Hibernate] Todas las categorías seleccionadas");
             String query = "SELECT d FROM Categoria d";
             return man.createQuery(query, Categoria.class).getResultList();
         } catch (Exception e) {
-            throw new Exception("Error: Imposible seleccionar la categoría", e);
+            throw new Exception("Error: Imposible seleccionar las categorías", e);
+        } finally {
+            man.close();
         }
     }
 }

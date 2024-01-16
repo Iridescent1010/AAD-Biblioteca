@@ -16,6 +16,9 @@
     - [ ] `LibroDAOHibernate` [Neka]
     - [ ] `PrestamoDAOHibernate` [Iridescent]
     - [ ] `UsuarioDAOHibernate` [Iridescent]
+
+- Hay que asegurarse de que **no se pierda funcionalidad** (hay que mantener el
+log de los libros)
      
 > [!IMPORTANT]  
 > - Hay un problema con las interfaces DAO (`CategoriaDAO`, `HistoricoDAO`...)
