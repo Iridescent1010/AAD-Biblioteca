@@ -23,7 +23,7 @@ public class Prestamo extends Entidad {
     private int idPrestamo;
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
-    private UsuarioDTO usuario;
+    private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "idLibro", referencedColumnName = "id")
     private Libro libro;
@@ -33,7 +33,9 @@ public class Prestamo extends Entidad {
     private Timestamp fechaPrestamo = Timestamp.valueOf(LocalDateTime.now());
 
     // TODO: Eliminar estas dos
+    @Transient
     private int libroId;
+    @Transient
     private int usuarioId;
 
     /**
@@ -108,13 +110,31 @@ public class Prestamo extends Entidad {
         this.fechaPrestamo = Timestamp.valueOf(fechaPrestamo);
     }
 
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    /*
+        public Libro getObjLibro(){
+            return Entidades.libro(libroId);
+        }
+
+        public Usuario getObjUsuario(){
+            return  Entidades.usuario(usuarioId);
+        }
+        */
     public Libro getObjLibro(){
-        return Entidades.libro(libroId);
+        return getLibro();
     }
 
     public Usuario getObjUsuario(){
-        return  Entidades.usuario(usuarioId);
+        return  getUsuario();
     }
+
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,12 +148,22 @@ public class Prestamo extends Entidad {
         return Objects.hash(fechaPrestamo);
     }
 
-
-    public UsuarioDTO getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @Override
+    public String toString() {
+        String format = """
+                Prestamo %d
+                    Usuario %s
+                    Libro %s
+                    Fecha %s
+                """;
+        return String.format(format,idPrestamo, usuario.toString(), libro.toString(), fechaPrestamo.toString());
     }
 }

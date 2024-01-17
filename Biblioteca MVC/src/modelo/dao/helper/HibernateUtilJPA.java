@@ -86,13 +86,12 @@ public class HibernateUtilJPA {
             transaction = manager.getTransaction();
             transaction.begin();
             String[] queries = new String[]{
-                    "USE proyecto_orm;",
-                    "DELETE FROM empleado;",
-                    "DELETE FROM empleado_datos_prof;",
-                    "DELETE FROM proyecto;",
-                    "DELETE FROM proyecto_sede;",
-                    "DELETE FROM departamento;",
-                    "DELETE FROM sede;"
+                    "USE BIBLIOTECA;",
+                    "DELETE FROM historico;",
+                    "DELETE FROM prestamos;",
+                    "DELETE FROM categorias;",
+                    "DELETE FROM usuario;",
+                    "DELETE FROM libro;"
             };
 
             for (String sql : queries) {
