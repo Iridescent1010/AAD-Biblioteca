@@ -86,11 +86,11 @@ public class PrestamoDAOHibernate implements PrestamoDAO{
     public List<Prestamo> leerAllPrestamos() throws Exception {
         EntityManager man = managerFactory.createEntityManager();
         try {
-            LogFile.saveLOG("[Hibernate] Todos los libros seleccionados");
-            String query = "SELECT l FROM Usuario l";
+            LogFile.saveLOG("[Hibernate] Todos los prestamos seleccionados");
+            String query = "SELECT p FROM Prestamo p";
             return man.createQuery(query, Prestamo.class).getResultList();
         } catch (Exception e) {
-            throw new Exception("Error: Imposible seleccionar los usuario", e);
+            throw new Exception("Error: Imposible seleccionar los prestamos", e);
         } finally {
             man.close();
         }
@@ -100,10 +100,10 @@ public class PrestamoDAOHibernate implements PrestamoDAO{
     public Prestamo getPrestamo(int id) throws Exception {
         EntityManager man = managerFactory.createEntityManager();
         try {
-            LogFile.saveLOG("[Hibernate] Categoria seleccionada " + id);
+            LogFile.saveLOG("[Hibernate] Prestamo seleccionado " + id);
             return man.find(Prestamo.class, id);
         } catch (Exception e) {
-            throw new Exception("Error: Imposible seleccionar la categoría", e);
+            throw new Exception("Error: Imposible seleccionar el prestamo", e);
         } finally {
             man.close();
         }
