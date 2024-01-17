@@ -1,12 +1,14 @@
 import excepciones.CampoVacioExcepcion;
 import modelo.Categoria;
+import modelo.Historico;
 import modelo.Libro;
-import modelo.dao.CategoriaDAO;
-import modelo.dao.CategoriaDAOHibernate;
-import modelo.dao.LibroDAO;
-import modelo.dao.LibroDAOHibernate;
+import modelo.dao.*;
 import modelo.dao.helper.HibernateUtilJPA;
 import singleton.Configuracion;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 /**
  * Es un método main para probar que la librería de hibernate
@@ -15,13 +17,16 @@ import singleton.Configuracion;
 public class HibernateTest {
     static CategoriaDAO categoriaDAO = new CategoriaDAOHibernate();
     static LibroDAO libroDAO = new LibroDAOHibernate();
+    static HistoricoDAO historicoDAO = new HistoricoDAOHibernate();
     public static void main(String[] args) {
         try {
             // Puede que de error sin esto
             Configuracion.getInstance().setPassword("pwd13");
             HibernateUtilJPA.suppressWarnings();
-            testCategoria();
-            testLibro();
+            //testCategoria();
+           // testLibro();
+            //testInsertarHistorico();
+            testObtenerHistorico();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,5 +62,19 @@ public class HibernateTest {
         libroDAO.insertar(lib);
         System.out.println(libroDAO.getLibro(lib.getId()));
         System.out.println(lib.getCategoria());
+    }
+    static void testInsertarHistorico() throws SQLException, IOException {
+
+        Historico historico = new Historico();
+        historico.setUser("pepe");
+        historico.setFecha(LocalDateTime.now());
+        historico.setInfo("Si sas");
+
+        historicoDAO.insertar();
+        System.out.println("Historico insertado correctamente.");
+    }
+    static void testObtenerHistorico() {
+        Historico historico = historicoDAO.getHistorico();
+        System.out.println(historico);
     }
 }
