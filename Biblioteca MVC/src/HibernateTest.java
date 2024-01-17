@@ -1,12 +1,14 @@
 import excepciones.CampoVacioExcepcion;
 import modelo.Categoria;
+import modelo.Historico;
 import modelo.Libro;
 import modelo.Prestamo;
 import modelo.Usuario;
 import modelo.dao.*;
 import modelo.dao.helper.HibernateUtilJPA;
 import singleton.Configuracion;
-
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
@@ -20,6 +22,8 @@ public class HibernateTest {
     private static LibroDAO libroDAO;
     private static PrestamoDAO prestamoDAO;
     private static UsuarioDAO usuarioDAO;
+    private static HistoricoDAO historicoDAO;
+  
     public static void main(String[] args) {
         try {
             // Puede que de error sin esto
@@ -29,6 +33,7 @@ public class HibernateTest {
             libroDAO = new LibroDAOHibernate();
             prestamoDAO = new PrestamoDAOHibernate();
             usuarioDAO = new UsuarioDAOHibernate();
+            historicoDAO = new HistoricoDAOHibernate();
             System.out.println("== Probando CategoríaDAO ==");
             testCategoria();
             System.out.println("== Probando LibroDAO ==");
@@ -39,6 +44,10 @@ public class HibernateTest {
             testPrestamo();
             System.out.println("== Probando Todos ==");
             testAll();
+            //testCategoria();
+           // testLibro();
+            //testInsertarHistorico();
+            testObtenerHistorico();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,5 +118,20 @@ public class HibernateTest {
     }
 
     private static void testAll() {
+    }
+
+    static void testInsertarHistorico() throws SQLException, IOException {
+
+        Historico historico = new Historico();
+        historico.setUser("pepe");
+        historico.setFecha(LocalDateTime.now());
+        historico.setInfo("Si sas");
+
+        historicoDAO.insertar();
+        System.out.println("Historico insertado correctamente.");
+    }
+    static void testObtenerHistorico() {
+        Historico historico = historicoDAO.getHistorico();
+        System.out.println(historico);
     }
 }
