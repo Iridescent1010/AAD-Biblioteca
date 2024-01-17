@@ -2,7 +2,6 @@ package modelo;
 
 import excepciones.CampoVacioExcepcion;
 import modelo.dao.helper.Entidades;
-import modelo.old.CategoriaDTO;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -30,9 +29,10 @@ public class Libro extends Entidad {
     private String editorial;
     @ManyToOne
     @JoinColumn(name = "categoria", referencedColumnName = "id")
-    private CategoriaDTO categoria;
+    private Categoria categoria;
 
-    private int idCategoria;
+    @Transient
+    private int categoriaId;
     /**
      * Getter para atributo id
      * @return el valor del atributo id
@@ -96,15 +96,15 @@ public class Libro extends Entidad {
      * Getter para atributo categoria
      * @return el valor del atributo categoria
      */
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getCategoriaId() {
+        return categoriaId;
     }
     /**
      * Setter para asignar una categoria nuevo;
      * @param categoria nuevo valor para el atributo categoria
      */
-    public void setIdCategoria(int categoria) {
-        idCategoria = categoria;
+    public void setCategoriaId(int categoria) {
+        categoriaId = categoria;
     }
 
     @Override
@@ -113,13 +113,13 @@ public class Libro extends Entidad {
     }
 
     public Categoria getObjCategoria(){
-        return Entidades.categoria(idCategoria);
+        return Entidades.categoria(categoriaId);
     }
     public String getCategoriaDescr() {
        Categoria oCategoria = getObjCategoria();
        if (oCategoria!=null)
            return oCategoria.getCategoria();
-       else return String.format("Categoria %d desconocida",idCategoria);
+       else return String.format("Categoria %d desconocida", categoriaId);
     }
 
     @Override
@@ -135,11 +135,11 @@ public class Libro extends Entidad {
         return Objects.hash(id, nombre, autor, editorial);
     }
 
-    public CategoriaDTO getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaDTO categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 }

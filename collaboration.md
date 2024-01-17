@@ -11,11 +11,14 @@
 - [x] Añadir hibernate al proyecto (Instrucciones en la presentación)
 - [x] Crear correspondencia con la base de datos (Generate Persistence Mapping)
 - [ ] Implementar de nuevo las clases DAO [`modelo.dao`](./Biblioteca%20MVC/src/modelo/dao/), esta parte es difícil.
-    - [ ] `CategoriaDAOHibernate` [Neka]
+    - [x] `CategoriaDAOHibernate` [Neka]
     - [ ] `HistoricoDAOHibernate` [Vts]
-    - [ ] `LibroDAOHibernate` [Neka]
+    - [x] `LibroDAOHibernate` [Neka]
     - [ ] `PrestamoDAOHibernate` [Iridescent]
     - [ ] `UsuarioDAOHibernate` [Iridescent]
+
+- Hay que asegurarse de que **no se pierda funcionalidad** (hay que mantener el
+log de los libros)
      
 > [!IMPORTANT]  
 > - Hay un problema con las interfaces DAO (`CategoriaDAO`, `HistoricoDAO`...)
@@ -78,7 +81,20 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 >
 > Crear implementación del DAO para Hibernate
 
+> ### Semana 5 (15/1/2024 - 21/1/2024)
+>
+> Patrón observer
+
 ## 📄 Registro de cambios
+
+### 16/01/2024
+
+Implementaciones de Hibernate para las interfaces `CategoriaDAO` y `LibroDAO`
+
+### 14/01/2024
+
+Añadir anotaciones JPA a las clases POJO originales y realizar pruebas con
+Hibernate
 
 ### 11/01/2024
 

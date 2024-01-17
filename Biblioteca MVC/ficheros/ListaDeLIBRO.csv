@@ -1,7 +1,4 @@
 id,nombre,autor,editorial,categoria
-
-
-
 5,Programando Bots,Pepito,Editorial 3,2
 6,Terminator,Paquito,no lo se y tu??,8
 8,Santa Tecla Returns,Pepito,Editorial 1,8
@@ -20,3 +17,13 @@ id,nombre,autor,editorial,categoria
 12,Sin RETURN,Pedrolo,Editorial 67,2
 13,Pruebas,Pedrolo,Editorial 67,2
 14,De super putísima madre!!!!!,Mounstras,Perla shumajer,3
+4,Santa Tecla,Pepito,Editorial 1,3
+5,Programando Bots,Pepito,Editorial 3,2
+6,Terminator,Paquito,Editorial 1,5
+7,WebOS,Andreita,Editorial 3,7
+8,Santa Tecla Returns,Pepito,Editorial 1,8
+9,Buceando en SQLite,Pepito,Editorial 2,1
+10,Windows (Keylogger) 10,Paquito,Editorial 2,8
+11,He perdido las llaves,Andreita,Editorial 1,6
+12,Sin RETURN,Pedrolo,Editorial 67,2
+13,Pruebas,Pedrolo,Editorial 67,2
