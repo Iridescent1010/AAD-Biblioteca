@@ -2,6 +2,8 @@ package vista;
 
 import modelo.Usuario;
 import modelo.BusquedaUsuario;
+import modelo.dao.LibroDAO;
+import modelo.dao.LibroDAOHibernate;
 import presentador.PresentadorUsuario;
 import presentador.VistaUsuarios;
 import vista.componentes.TablaUsuarios;

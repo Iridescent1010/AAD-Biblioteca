@@ -17,7 +17,7 @@
     - [x] `PrestamoDAOHibernate` [Iridescent]
     - [x] `UsuarioDAOHibernate` [Iridescent]
 
-- [ ] **Sustituir** las clases que utilizan **JDBC** por las que utilizan **Hibernate** en el **programa principal**
+- [x] **Sustituir** las clases que utilizan **JDBC** por las que utilizan **Hibernate** en el **programa principal** [Neka]
 
 - Hay que asegurarse de que **no se pierda funcionalidad** (hay que mantener el
 log de los libros)
@@ -88,6 +88,11 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 > Patrón observer
 
 ## 📄 Registro de cambios
+
+### 18/01/2024
+
+- Sustituir clases DAO JDBC por clases DAO Hibernate en el programa principal
+- Arreglar creación de préstamo y lista de libros
 
 ### 17/01/2024
 
