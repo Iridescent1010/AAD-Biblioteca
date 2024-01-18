@@ -32,6 +32,11 @@ log de los libros)
 
 #### 2. Implementar patrón Observer
 
+- [ ] Explicación del patrón observer en readme.md
+- [ ] Implementación de observer
+    - [ ] Interfaz `Observer`
+    - [ ] Interfaz `Observable`
+
 Para que la interfaz refleje las últimas modificaciones que ocurran en los datos.
 
 > Creo que lo mejor será estudiar el patrón Observer en un ejemplo más pequeño antes de implementarlo en el proyecto.
