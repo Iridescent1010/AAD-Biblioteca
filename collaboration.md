@@ -17,7 +17,7 @@
     - [x] `PrestamoDAOHibernate` [Iridescent]
     - [x] `UsuarioDAOHibernate` [Iridescent]
 
-- [ ] **Sustituir** las clases que utilizan **JDBC** por las que utilizan **Hibernate** en el **programa principal**
+- [x] **Sustituir** las clases que utilizan **JDBC** por las que utilizan **Hibernate** en el **programa principal** [Neka]
 
 - Hay que asegurarse de que **no se pierda funcionalidad** (hay que mantener el
 log de los libros)
