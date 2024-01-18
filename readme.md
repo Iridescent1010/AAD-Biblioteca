@@ -52,6 +52,31 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 4. Merge conflicts
 5. `@Transient`
 
+
+#### Al cambiar interfaces DAO JDBC por interfaces DAO Hibernate
+
+1. No aparecen nombres de categorías al listar libros
+    - ![captura](./media/unknown_categories.png)
+    - código:
+    ```java
+    // Old:
+    public String getCategoriaDescr() {
+       Categoria oCategoria = getObjCategoria();
+       if (oCategoria!=null)
+           return oCategoria.getCategoria();
+       else return String.format("Categoria %d desconocida", categoriaId);
+    }
+
+    // New:    
+    public String getCategoriaDescr() {
+        if (categoria != null)
+            return categoria.getCategoria();
+        return "0. Categoría desconocida";
+    }
+    ```
+    - ![captura](./media/known_categories.png)
+2. Problemas en la búsqueda de libros y usuarios para crear un nuevo préstamo
+
 ---
 
 ```yaml

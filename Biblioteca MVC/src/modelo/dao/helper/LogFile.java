@@ -1,5 +1,6 @@
 package modelo.dao.helper;
 
+import modelo.dao.HistoricoDAOHibernate;
 import modelo.dao.HistoricoDAOImpl;
 
 
@@ -28,7 +29,7 @@ public class LogFile {
      */
     public static void saveLOG(String msgLog) throws Exception {
         saveLOGsinBD(msgLog);
-        HistoricoDAOImpl.mensaje(msgLog);
+        HistoricoDAOHibernate.mensaje(msgLog);
     }
     /**
      * Graba en el fichero log para el día actual el mensaje recibido

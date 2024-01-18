@@ -12,23 +12,20 @@ import javax.persistence.Query;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HistoricoDAOHibernate implements HistoricoDAO {
 
+    private Historico historico;
+
+
+    public HistoricoDAOHibernate(Historico historico) {
+        this.historico = historico;
+    }
+
     @Override
     public Historico getHistorico() {
-        EntityManager entityManager = HibernateUtilJPA.getEntityManagerFactory().createEntityManager();
-
-        try {
-            Query query = entityManager.createQuery("SELECT h FROM Historico h ORDER BY h.idHistorico DESC", Historico.class);
-            query.setMaxResults(1);
-            return (Historico) query.getSingleResult();
-        } catch (NoResultException e) {
-            System.err.println("No hay historicos en la base de datos.");
-            return null;
-        } finally {
-            entityManager.close();
-        }
+        return historico;
     }
 
     @Override
@@ -40,18 +37,9 @@ public class HistoricoDAOHibernate implements HistoricoDAO {
             transaction = entityManager.getTransaction();
             transaction.begin();
 
-
-            Historico historico = new Historico();
-            historico.setUser(Configuracion.getInstance().getUser());
-            historico.setFecha(LocalDateTime.now());
-            historico.setInfo("Mensaje de prueba");
-
-
             entityManager.persist(historico);
 
-
             grabaEnLogIns(historico);
-
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -68,5 +56,12 @@ public class HistoricoDAOHibernate implements HistoricoDAO {
         String logMessage = String.format("[Hibernate] Historico insertado - ID: %d, Usuario: %s, Fecha: %s, Info: %s",
                 historico.getIdHistorico(), historico.getUser(), historico.getFechaCad(), historico.getInfo());
         LogFile.saveLOGsinBD(logMessage);
+    }
+
+    public static void mensaje(String msgLog) throws Exception {
+        Historico historico = new Historico();
+        historico.setUser(Configuracion.getInstance().getUser());
+        historico.setInfo(msgLog);
+        new HistoricoDAOImpl(historico).insertar();
     }
 }

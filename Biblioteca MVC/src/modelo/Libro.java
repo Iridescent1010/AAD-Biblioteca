@@ -115,11 +115,11 @@ public class Libro extends Entidad {
     public Categoria getObjCategoria(){
         return Entidades.categoria(categoriaId);
     }
+
     public String getCategoriaDescr() {
-       Categoria oCategoria = getObjCategoria();
-       if (oCategoria!=null)
-           return oCategoria.getCategoria();
-       else return String.format("Categoria %d desconocida", categoriaId);
+        if (categoria != null)
+            return categoria.getCategoria();
+        return "0. Categoría desconocida";
     }
 
     @Override
