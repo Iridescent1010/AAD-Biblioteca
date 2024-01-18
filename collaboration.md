@@ -89,6 +89,11 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 
 ## 📄 Registro de cambios
 
+### 18/01/2024
+
+- Sustituir clases DAO JDBC por clases DAO Hibernate en el programa principal
+- Arreglar creación de préstamo y lista de libros
+
 ### 17/01/2024
 
 - Implementaciones de `UsuarioDAO`, `PrestamoDAO` e `HistoricoDAO`

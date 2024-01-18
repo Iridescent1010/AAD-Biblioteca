@@ -20,7 +20,7 @@
 > ### ⌨ Integrantes del grupo
 >
 > - :feelsgood: [Red One](https://github.com/Vtsfactory16) 
-> - ⏰ [Iridescent1010](https://github.com/Iridescent100) 
+> - ⏰ [Iridescent1010](https://github.com/Iridescent1010) 
 > - 🖤 [CakeNeka](https://github.com/cakeneka) 
 
 El proyecto consiste en una aplicación de gestión de una biblioteca. 
@@ -75,7 +75,34 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
     }
     ```
     - ![captura](./media/known_categories.png)
-2. Problemas en la búsqueda de libros y usuarios para crear un nuevo préstamo
+
+2. Problemas en la selección de libros y usuarios para crear un nuevo préstamo
+(código en [`FichaPrestamo.java`](./Biblioteca%20MVC/src/vista/FichaPrestamo.java))
+    - Selección de **usuario**
+
+    ```java
+    // Old:
+    Usuarios.seleccionaUsuario(null,"Seleccione un usuario:",true,busquedaUsuario);
+    getPrestamo().setUsuarioId(busquedaUsuario.idSel);
+
+    // New:
+    Usuario selected = Usuarios.seleccionaUsuario(null,"Seleccione un usuario:",true,busquedaUsuario).getUsuario();
+    getPrestamo().setUsuario(selected);
+
+    ```
+    - Selección de **libro**
+
+    ```java
+    // Old
+    Libros.seleccionaLibro(null,"Seleccione un libro:",true,busquedaLibro);
+    getPrestamo().setLibroId(busquedaLibro.idSel);
+
+    // New
+    Libro selected = Libros.seleccionaLibro(null,"Seleccione un libro:",true,busquedaLibro).getLibro();
+    getPrestamo().setLibro(selected);
+    ```
+
+![captura](./media/prestamo_creation.png)
 
 ---
 
@@ -83,4 +110,9 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 Módulo: Acceso a datos
 Lenguaje: Java
 Tema: Tema 3. Herramientas de Mapeo Objeto-Relacional
+Herramientas:
+  - IntelliJ Idea Ultimate 2023.2.5
+  - JDK 17
+  - Hibernate core 5.6.14
+  - JPA
 ```

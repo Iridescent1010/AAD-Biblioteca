@@ -27,7 +27,6 @@ public class PresentadorLibro {
 
     public void listaAllLibros() throws Exception {
         VistaLibros vistaLibros = (VistaLibros) vistaLibro;
-        System.out.println(libroDAO.leerAllLibros());
         vistaLibros.setLibros(libroDAO.leerAllLibros());
     }
     public void listaAllCategorias(){

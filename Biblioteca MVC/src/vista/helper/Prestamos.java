@@ -22,8 +22,6 @@ public class Prestamos {
     public static FichaPrestamo fichaPrestamo(Prestamo prestamo) throws Exception {
         PrestamoDAO prestamoDAO=new PrestamoDAOHibernate();
         CategoriaDAO categoriaDAO=new CategoriaDAOHibernate();
-        UsuarioDAO usuarioDAO= new UsuarioDAOHibernate();
-        LibroDAO libroDAO=new LibroDAOHibernate();
         FichaPrestamo fichaPrestamo=new FichaPrestamo(prestamo);
         PresentadorPrestamo presentadorPrestamo=new PresentadorPrestamo(prestamoDAO,categoriaDAO,fichaPrestamo);
         fichaPrestamo.setPresentador(presentadorPrestamo);
