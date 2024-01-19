@@ -39,6 +39,65 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 
 ## 🔭 Patrón Observer
 
+### Teoría
+
+- Patrón de **comportamiento**
+- Establece una relación entre un sujeto (o objeto **observado** (`Observable`)) y los objetos **observadores** (`Observer`)
+    - `Observable` Objeto en el que se producen cambios (**notifica** a los `Observer` cuando es modificado)
+    - `Observer` Objetos que son **notificados** cuando `Observable` es modificado
+
+```mermaid
+classDiagram
+direction TB
+
+Observable <|-- ObservableImpl 
+Observable *-- Observer : agregación
+Observer <|-- ObserverImplA  
+Observer <|-- ObserverImplB
+note for Observable "Este es el objeto que cambia.\nPor ejemplo, una categoría.\n\n notify() es llamado cuando\n se produce un cambio"
+  
+  class Observable{
+    -observers: Observer[]
+    +setObserver(observer: Observer)
+    +deleteObserver(observer: Observer)
+    +notify() 
+  }
+  class ObservableImpl {
+    +getState()
+    +setState(state: any)
+  }
+  class Observer{
+    +update()
+  }
+  class ObserverImplA{
+    +update()
+  }
+  class ObserverImplB{
+    +update()
+  }
+```
+
+```java
+interface Observer {
+  void update(); // se llama en el método notify de observable
+}
+```
+
+```java
+interface Observable {
+  void addObserver(); 
+  void removeObserver(); // cada observable tiene una lista de observers
+
+  void notify(); // aquí recorrerá esa lista de observers y llamará a sus métodos update()
+}
+```
+
+### Implementación
+
+- Interfaz `Observable`/ subject
+  - Métodos: `notify()`
+- Interfaz `Observer`
+
 ## 🕹 Modelo-vista-controlador
 
 ## 🏔 Dificultades encontradas
