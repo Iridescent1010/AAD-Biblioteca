@@ -48,10 +48,10 @@ hmm, no se muy bien que podemos hacer aquí...
 
 #### 4. Extra (nuevas funcionalidades)
 
-- [ ] Revisar y corregir errores:
-    - [ ] Mensajes de error infinitos sin sentido [Iridescent]
-    - [ ] Index out of bounds en las ventanas `Lista` [Iridescent]
-    - [ ] Búsqueda de libros y usuarios en la ventana de creación de `Prestamo` [Neka]
+- [x] Revisar y corregir errores:
+    - [x] Mensajes de error infinitos sin sentido [Iridescent]
+    - [x] Index out of bounds en las ventanas `Lista` [Iridescent]
+    - [x] Búsqueda de libros y usuarios en la ventana de creación de `Prestamo` [Neka]
 - [ ] Vista de libros por categoría [Neka]
 - [ ] Usuario y contraseña de hibernate (no deben aparecer en [`hibernate.cfg.xml`](Biblioteca%20MVC/src/hibernate.cfg.xml) [Ridu]
 - [ ] **Imagen de fondo** [Ridu]

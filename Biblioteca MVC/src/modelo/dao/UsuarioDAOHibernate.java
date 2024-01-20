@@ -99,13 +99,24 @@ public class UsuarioDAOHibernate implements UsuarioDAO{
         }
     }
 
+    private String insertWildcards(String original) {
+        original = original.trim();
+        if (original.isEmpty())
+            return original;
+        return "%" + original + "%";
+    }
     @Override
     public List<Usuario> leerUsuariosOR(int id, String nombre, String apellidos) throws Exception {
         EntityManager man = managerFactory.createEntityManager();
+
+        // Insertar wildcards en strings no vacíos
+        nombre = insertWildcards(nombre);
+        apellidos = insertWildcards(apellidos);
+
         try {
             String query = """
                 SELECT l FROM Usuario l
-                WHERE l.id = :id OR l.nombre = :nombre OR l.apellidos = :apellidos
+                WHERE l.id = :id OR l.nombre like :nombre OR l.apellidos like :apellidos
             """;
             TypedQuery<Usuario> q = man.createQuery(query, Usuario.class);
             q.setParameter("id", id);

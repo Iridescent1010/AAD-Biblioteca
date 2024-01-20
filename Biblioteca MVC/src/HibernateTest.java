@@ -6,7 +6,12 @@ import modelo.Prestamo;
 import modelo.Usuario;
 import modelo.dao.*;
 import modelo.dao.helper.HibernateUtilJPA;
+import modelo.dao.helper.LogFile;
 import singleton.Configuracion;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -34,6 +39,8 @@ public class HibernateTest {
             prestamoDAO = new PrestamoDAOHibernate();
             usuarioDAO = new UsuarioDAOHibernate();
             historicoDAO = new HistoricoDAOHibernate(new Historico());
+            pruebaLeerOR();
+            /*
             System.out.println("== Probando CategoríaDAO ==");
             testCategoria();
             System.out.println("== Probando LibroDAO ==");
@@ -44,10 +51,10 @@ public class HibernateTest {
             testPrestamo();
             System.out.println("== Probando Todos ==");
             testAll();
-            //testCategoria();
-           // testLibro();
             //testInsertarHistorico();
             testObtenerHistorico();
+
+             */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,5 +140,25 @@ public class HibernateTest {
     static void testObtenerHistorico() {
         Historico historico = historicoDAO.getHistorico();
         System.out.println(historico);
+    }
+
+    static void pruebaLeerOR() throws Exception {
+        EntityManagerFactory managerFactory = HibernateUtilJPA.getEntityManagerFactory();
+        EntityManager man = managerFactory.createEntityManager();
+        String query = """
+            SELECT l FROM Libro l
+            WHERE l.id = :id OR l.nombre like :titulo OR l.autor like :autor
+            OR l.editorial like :editorial OR l.categoria.id = :idcategoria
+        """;
+        TypedQuery<Libro> q = man.createQuery(query, Libro.class);
+        q.setParameter("id", 0);
+        q.setParameter("titulo", "%%");
+        q.setParameter("autor", "");
+        q.setParameter("editorial", "");
+        q.setParameter("idcategoria", 0);
+
+        LogFile.saveLOG("[Hibernate] Todos los libros seleccionados (OR)");
+        System.out.println(q.getResultList());
+
     }
 }

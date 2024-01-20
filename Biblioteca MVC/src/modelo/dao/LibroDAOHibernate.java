@@ -111,14 +111,31 @@ public class LibroDAOHibernate implements LibroDAO{
         }
     }
 
+    /**
+     * Métodos llamados en la parte de búsqueda de libro, antes de generar un nuevo préstamo
+     * @param original
+     * @return
+     */
+    private String insertWildcards(String original) {
+        original = original.trim();
+        if (original.isEmpty())
+            return original;
+        return "%" + original + "%";
+    }
     @Override
     public List<Libro> leerLibrosOR(int id, String titulo, String autor, String editorial, int categoria) throws Exception {
         EntityManager man = managerFactory.createEntityManager();
+
+        // Insertar wildcards en strings no vacios
+        titulo = insertWildcards(titulo);
+        autor = insertWildcards(autor);
+        editorial = insertWildcards(editorial);
+
         try {
             String query = """
                 SELECT l FROM Libro l
-                WHERE l.id = :id OR l.nombre = :titulo OR l.autor = :autor
-                OR l.editorial = :editorial OR l.categoria.id = :idcategoria
+                WHERE l.id = :id OR l.nombre like :titulo OR l.autor like :autor
+                OR l.editorial like :editorial OR l.categoria.id = :idcategoria
             """;
             TypedQuery<Libro> q = man.createQuery(query, Libro.class);
             q.setParameter("id", id);
@@ -127,7 +144,7 @@ public class LibroDAOHibernate implements LibroDAO{
             q.setParameter("editorial", editorial);
             q.setParameter("idcategoria", categoria);
 
-            LogFile.saveLOG("[Hibernate] Todos los libros seleccionados (OR)");
+            LogFile.saveLOG("[Hibernate] Múltiples libros seleccionados (OR)");
             return q.getResultList();
         } catch (Exception e) {
             throw new Exception("Error: Imposible seleccionar los libros", e);
