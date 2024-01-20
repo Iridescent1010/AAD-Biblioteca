@@ -25,7 +25,9 @@ public class Categoria extends Entidad {
     @Basic
     @Column(name = "categoria", nullable = true, length = -1)
     private String categoria;
-    @OneToMany(mappedBy = "categoria")
+
+    // Lo usamos en la ventana de lista categorias
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     private Collection<Libro> libros;
 
     public int getId() {
