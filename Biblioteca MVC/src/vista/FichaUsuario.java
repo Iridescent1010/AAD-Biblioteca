@@ -1,6 +1,5 @@
 package vista;
 
-import excepciones.CampoVacioExcepcion;
 import modelo.Usuario;
 import presentador.PresentadorUsuario;
 import presentador.VistaUsuario;
@@ -238,20 +237,7 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
 
     @Override
     public void focusLost(FocusEvent e) {
-            if (e.getComponent().equals(eNombre))
-                try {
-                    getUsuario().setNombre(eNombre.getText());
-                } catch (CampoVacioExcepcion campoVacioExcepcion) {
-                    eNombre.requestFocus();
-                    JOptionPane.showMessageDialog(this,campoVacioExcepcion.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
-                }
-            else if (e.getComponent().equals(eApellidos))
-                try {
-                    getUsuario().setApellidos(eApellidos.getText());
-                } catch (CampoVacioExcepcion campoVacioExcepcion) {
-                    eApellidos.requestFocus();
-                    JOptionPane.showMessageDialog(this,campoVacioExcepcion.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
-                }
+
     }
 
     @Override
