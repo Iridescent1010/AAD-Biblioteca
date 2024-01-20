@@ -53,10 +53,18 @@ hmm, no se muy bien que podemos hacer aquí...
     - [ ] Index out of bounds en las ventanas `Lista` [Iridescent]
     - [ ] Búsqueda de libros y usuarios en la ventana de creación de `Prestamo` [Neka]
 - [ ] Vista de libros por categoría [Neka]
-- [ ] Usuario y contraseña de hibernate (no deben aparecer en [`hibernate.cfg.xml`](Biblioteca%20MVC/hibernatecfg.xml) [Ridu]
+- [ ] Usuario y contraseña de hibernate (no deben aparecer en [`hibernate.cfg.xml`](Biblioteca%20MVC/src/hibernate.cfg.xml) [Ridu]
 - [ ] **Imagen de fondo** [Ridu]
 
 > "Estas nuevas funcionalidades inventadas por el grupo serán tenidas en cuenta en la nota."
+
+**Otras tareas**
+
+- Eliminar `System.out.println()` de debug
+- Eliminar clases POJO antiguas
+- Eliminar etiquetas JPA y atributos no utilizados
+- Antes de presentar:
+    - Restaurar la base de datos con los datos de [`datos.sql`](Biblioteca%20MVC/ficheros/datos.sql)
 
 ### Presentación
 
