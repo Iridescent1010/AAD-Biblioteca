@@ -64,6 +64,9 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
 
     @Override
     public Categoria getCategoria() {
+        if (jTable.getSelectedRow()==-1){
+            return null;
+        }
         return categorias.get(jTable.getSelectedRow());
     }
     @Override
@@ -133,16 +136,19 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
         }
     }
     private void borrar() {
-        if (JOptionPane.showConfirmDialog(this,
-                String.format("¿Desea BORRAR la categoría: %s?",getCategoria().getCategoria()),
-                "Atención:",
-                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-            try {
-                presentador.borra();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,e.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
+        if (getCategoria()!=null){
+            if (JOptionPane.showConfirmDialog(this,
+                    String.format("¿Desea BORRAR la categoría: %s?",getCategoria().getCategoria()),
+                    "Atención:",
+                    JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                try {
+                    presentador.borra();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this,e.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
+
     }
 
     @Override
