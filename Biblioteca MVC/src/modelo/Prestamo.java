@@ -1,8 +1,6 @@
 package modelo;
 
 import modelo.dao.helper.Entidades;
-import modelo.old.UsuarioDTO;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -32,12 +30,6 @@ public class Prestamo extends Entidad {
     @Column(name = "fechaPrestamo", nullable = true)
     private Timestamp fechaPrestamo = Timestamp.valueOf(LocalDateTime.now());
 
-    // TODO: Eliminar estas dos
-    @Transient
-    private int libroId;
-    @Transient
-    private int usuarioId;
-
     /**
      * Getter para atributo id
      * @return el valor del atributo idPrestamo
@@ -65,28 +57,30 @@ public class Prestamo extends Entidad {
      * @return el valor del atributo idLibro
      */
     public int getLibroId() {
-        return libroId;
+        if (libro == null) return -1;
+        return libro.getId();
     }
     /**
      * Setter para asignar un idLibro nuevo;
      * @param idLibro nuevo valor para el atributo idLibro
      */
     public void setLibroId(int idLibro) {
-        this.libroId = idLibro;
+        if (libro != null) libro.setId(idLibro);
     }
     /**
      * Getter para atributo idUsuario
      * @return el valor del atributo idUsuario
      */
     public int getUsuarioId() {
-        return usuarioId;
+        if (usuario == null) return -1;
+        return usuario.getId();
     }
     /**
      * Setter para asignar un idUsuario nuevo;
      * @param idUsuario nuevo valor para el atributo idUsuario
      */
     public void setUsuarioId(int idUsuario) {
-        this.usuarioId = idUsuario;
+        if (usuario != null) usuario.setId(idUsuario);
     }
     /**
      * Getter para atributo fechaPrestamo
@@ -118,15 +112,6 @@ public class Prestamo extends Entidad {
         this.libro = libro;
     }
 
-    /*
-        public Libro getObjLibro(){
-            return Entidades.libro(libroId);
-        }
-
-        public Usuario getObjUsuario(){
-            return  Entidades.usuario(usuarioId);
-        }
-        */
     public Libro getObjLibro(){
         return getLibro();
     }

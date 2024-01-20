@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-import modelo.old.LibroDTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +26,7 @@ public class Categoria extends Entidad {
     @Column(name = "categoria", nullable = true, length = -1)
     private String categoria;
     @OneToMany(mappedBy = "categoria")
-    private Collection<LibroDTO> libros;
+    private Collection<Libro> libros;
 
     public int getId() {
         return id;
@@ -64,11 +63,11 @@ public class Categoria extends Entidad {
         return Objects.hash(id, categoria);
     }
 
-    public Collection<LibroDTO> getLibros() {
+    public Collection<Libro> getLibros() {
         return libros;
     }
 
-    public void setLibros(Collection<LibroDTO> libros) {
+    public void setLibros(Collection<Libro> libros) {
         this.libros = libros;
     }
 
