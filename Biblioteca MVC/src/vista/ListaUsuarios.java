@@ -67,6 +67,9 @@ public class ListaUsuarios extends JInternalFrame implements VistaUsuarios, Mous
 
     @Override
     public Usuario getUsuario() {
+        if (jTable.getSelectedRow()==-1){
+            return null;
+        }
         return usuarios.get(jTable.getSelectedRow());
     }
 
@@ -121,16 +124,19 @@ public class ListaUsuarios extends JInternalFrame implements VistaUsuarios, Mous
 
     }
     private void borrar(Usuario usuario) {
-        if (JOptionPane.showConfirmDialog(this,
-                String.format("¿Desea BORRAR el usuario: %s %s?",usuario.getNombre(),usuario.getApellidos()),
-                "Atención:",
-                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-            try {
-                presentador.borra();
-            } catch (Exception e) {
-                SwgAuxiliar.msgExcepcion(e);
+        if (usuario!= null){
+            if (JOptionPane.showConfirmDialog(this,
+                    String.format("¿Desea BORRAR el usuario: %s %s?",usuario.getNombre(),usuario.getApellidos()),
+                    "Atención:",
+                    JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                try {
+                    presentador.borra();
+                } catch (Exception e) {
+                    SwgAuxiliar.msgExcepcion(e);
+                }
             }
         }
+
     }
     @Override
     public void mousePressed(MouseEvent e) {

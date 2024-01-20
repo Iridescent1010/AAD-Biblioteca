@@ -65,6 +65,9 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
 
     @Override
     public Libro getLibro() {
+        if (jTable.getSelectedRow()==-1){
+            return null;
+        }
         return libros.get(jTable.getSelectedRow());
     }
     @Override
@@ -140,16 +143,19 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
     }
 
     private void borrar(Libro libro) {
-        if (JOptionPane.showConfirmDialog(this,
-                String.format("¿Desea BORRAR el libro: %s %s?",libro.getNombre(),libro.getAutor()),
-                "Atención:",
-                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-            try {
-                presentador.borra();
-            } catch (Exception e) {
-                SwgAuxiliar.msgExcepcion(e);
+        if (libro !=null){
+            if (JOptionPane.showConfirmDialog(this,
+                    String.format("¿Desea BORRAR el libro: %s %s?",libro.getNombre(),libro.getAutor()),
+                    "Atención:",
+                    JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                try {
+                    presentador.borra();
+                } catch (Exception e) {
+                    SwgAuxiliar.msgExcepcion(e);
+                }
             }
         }
+
     }
 
     @Override

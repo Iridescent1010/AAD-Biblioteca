@@ -73,6 +73,9 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
 
     @Override
     public Prestamo getPrestamo() {
+        if (jTable.getSelectedRow()==-1){
+            return null;
+        }
         return prestamos.get(jTable.getSelectedRow());
     }
 
@@ -146,17 +149,20 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
     }
 
     private void borrar(Prestamo prestamo) {
-        if (JOptionPane.showConfirmDialog(this,
-                String.format("¿Desea BORRAR el préstamo:\n%s\n%s?",
-                        prestamo.getObjLibro(), prestamo.getObjUsuario()),
-                "Atención:",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                presentador.borra();
-            } catch (Exception e) {
-                SwgAuxiliar.msgExcepcion(e);
+        if (prestamo !=null){
+            if (JOptionPane.showConfirmDialog(this,
+                    String.format("¿Desea BORRAR el préstamo:\n%s\n%s?",
+                            prestamo.getObjLibro(), prestamo.getObjUsuario()),
+                    "Atención:",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                try {
+                    presentador.borra();
+                } catch (Exception e) {
+                    SwgAuxiliar.msgExcepcion(e);
+                }
             }
         }
+
     }
 
     @Override
