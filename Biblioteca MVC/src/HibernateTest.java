@@ -33,7 +33,7 @@ public class HibernateTest {
             libroDAO = new LibroDAOHibernate();
             prestamoDAO = new PrestamoDAOHibernate();
             usuarioDAO = new UsuarioDAOHibernate();
-            historicoDAO = new HistoricoDAOHibernate();
+            historicoDAO = new HistoricoDAOHibernate(new Historico());
             System.out.println("== Probando CategoríaDAO ==");
             testCategoria();
             System.out.println("== Probando LibroDAO ==");

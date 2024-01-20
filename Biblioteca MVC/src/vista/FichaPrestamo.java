@@ -217,7 +217,7 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
     @Override
     public void setPresentador(PresentadorPrestamo presentador){
         this.presentador=presentador;
-        presentador.listaAllCategorias();
+        presentador.listaAllCategorias(); // rellena el menú desplegable de categorías
     }
 
     @Override
@@ -267,6 +267,7 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
 
     private void actualizaformulario() {
         Libro libro=prestamo.getObjLibro();
+        System.out.println(libro);
         if (libro!=null)
             eLibro.setText(libro.toString());
 
@@ -319,8 +320,8 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
                         busquedaUsuario.apellidos=eFindUsuario.getText().trim();
                 }
             } else busquedaUsuario.tipo=TipoBusqueda.TODOS;
-            Usuarios.seleccionaUsuario(null,"Seleccione un usuario:",true,busquedaUsuario);
-            getPrestamo().setUsuarioId(busquedaUsuario.idSel);
+            Usuario selected = Usuarios.seleccionaUsuario(null,"Seleccione un usuario:",true,busquedaUsuario).getUsuario();
+            getPrestamo().setUsuario(selected);
             actualizaformulario();
         } catch (NumberFormatException e) {
             SwgAuxiliar.msgError("Introduzca un valor númerico o desactive la busqueda por código de usuario");
@@ -353,8 +354,8 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
             } else {
                 busquedaLibro.tipo = TipoBusqueda.TODOS;
             }
-            Libros.seleccionaLibro(null,"Seleccione un libro:",true,busquedaLibro);
-            getPrestamo().setLibroId(busquedaLibro.idSel);
+            Libro selected = Libros.seleccionaLibro(null,"Seleccione un libro:",true,busquedaLibro).getLibro();
+            getPrestamo().setLibro(selected);
             actualizaformulario();
         } catch (NumberFormatException e) {
             SwgAuxiliar.msgError("Introduzca un valor númerico o desactive la busqueda por código de libro");

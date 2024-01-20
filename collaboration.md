@@ -10,12 +10,14 @@
 
 - [x] Añadir hibernate al proyecto (Instrucciones en la presentación)
 - [x] Crear correspondencia con la base de datos (Generate Persistence Mapping)
-- [ ] Implementar de nuevo las clases DAO [`modelo.dao`](./Biblioteca%20MVC/src/modelo/dao/), esta parte es difícil.
+- [x] Implementar de nuevo las clases DAO [`modelo.dao`](./Biblioteca%20MVC/src/modelo/dao/), esta parte es difícil.
     - [x] `CategoriaDAOHibernate` [Neka]
-    - [ ] `HistoricoDAOHibernate` [Vts]
+    - [x] `HistoricoDAOHibernate` [Vts]
     - [x] `LibroDAOHibernate` [Neka]
-    - [ ] `PrestamoDAOHibernate` [Iridescent]
-    - [ ] `UsuarioDAOHibernate` [Iridescent]
+    - [x] `PrestamoDAOHibernate` [Iridescent]
+    - [x] `UsuarioDAOHibernate` [Iridescent]
+
+- [x] **Sustituir** las clases que utilizan **JDBC** por las que utilizan **Hibernate** en el **programa principal** [Neka]
 
 - Hay que asegurarse de que **no se pierda funcionalidad** (hay que mantener el
 log de los libros)
@@ -29,6 +31,11 @@ log de los libros)
 > Probablemente surjan conflictos entre las clases POJO que ya existen y las clases POJO que se generan al crear la correspondencia.
 
 #### 2. Implementar patrón Observer
+
+- [ ] Explicación del patrón observer en readme.md
+- [ ] Implementación de observer
+    - [ ] Interfaz `Observer`
+    - [ ] Interfaz `Observable`
 
 Para que la interfaz refleje las últimas modificaciones que ocurran en los datos.
 
@@ -87,9 +94,19 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 
 ## 📄 Registro de cambios
 
+### 18/01/2024
+
+- Sustituir clases DAO JDBC por clases DAO Hibernate en el programa principal
+- Arreglar creación de préstamo y lista de libros
+
+### 17/01/2024
+
+- Implementaciones de `UsuarioDAO`, `PrestamoDAO` e `HistoricoDAO`
+- Comprobado el correcto funcionamiento de las implementaciones
+
 ### 16/01/2024
 
-Implementaciones de Hibernate para las interfaces `CategoriaDAO` y `LibroDAO`
+Implementaciones para Hibernate de las interfaces `CategoriaDAO` y `LibroDAO`
 
 ### 14/01/2024
 
