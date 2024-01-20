@@ -119,6 +119,15 @@ hmm, no se muy bien que podemos hacer aquí...
 
 ## 📄 Registro de cambios
 
+### 20/01/2024
+
+- Corregidos **errores** (Index out of bounds, "el campo nombres está vacío"...)
+- Añadida **Imagen de fondo**
+- Añadido botón para ver los **libros pertenecientes a una categoría**
+
+![new\_button](./media/new_button.png)
+![new\_dialog](./media/new_dialog)
+
 ### 19/01/2024
 
 - Implementado **Patrón Observer**
