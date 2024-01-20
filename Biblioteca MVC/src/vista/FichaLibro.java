@@ -3,6 +3,8 @@ package vista;
 import excepciones.CampoVacioExcepcion;
 import modelo.Categoria;
 import modelo.Libro;
+import modelo.observer.Observable;
+import modelo.observer.Observer;
 import presentador.PresentadorLibro;
 import presentador.VistaLibro;
 import vista.helper.SwgAuxiliar;
@@ -20,7 +22,7 @@ import java.util.List;
  * @author AGE
  * @version 2
  */
-public class FichaLibro extends JInternalFrame implements VistaLibro, ActionListener, InternalFrameListener, FocusListener, KeyListener {
+public class FichaLibro extends JInternalFrame implements VistaLibro, ActionListener, InternalFrameListener, FocusListener, KeyListener, Observable {
     private static final int WIDTH = 450;
     private static final int HEIGHT = 250;
     private Libro libro;
@@ -214,7 +216,8 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
                 actualizaformulario();
             }
             else presentador.modifica();
-            FormMain.actualizaListaLibros();
+            notifyObservers();// en vez de usar FormMain.actualizaListaLibros(); usamos notify observers
+
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
@@ -228,7 +231,8 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaLibros();
+                notifyObservers();// en vez de usar FormMain.actualizaListaLibros(); usamos notify observers
+
                 JOptionPane.showMessageDialog(this, "Libro borrado con éxito!!");
                 dispose();
             } catch (Exception e) {
@@ -317,6 +321,26 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    //Implementacion del patron observer(observable)
+    @Override
+    public void addObserver(Observer o) {
+
+    }
+
+    @Override
+    public void deleteObserver(Observer o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+        try {
+            FormMain.getInstance().update();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

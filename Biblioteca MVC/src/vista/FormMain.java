@@ -6,6 +6,7 @@ import modelo.Libro;
 import modelo.Prestamo;
 import modelo.Usuario;
 import modelo.dao.helper.Entidades;
+import modelo.observer.Observer;
 import vista.componentes.MiBarraDeEstado;
 import vista.helper.*;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * @author AGE
  * @version 2
  */
-public class FormMain extends JFrame implements ActionListener, FocusListener, WindowListener,KeyListener {
+public class FormMain extends JFrame implements ActionListener, FocusListener, WindowListener,KeyListener, Observer {
     private static FormMain main=null;
     private static final int WIDTH = 1024;
     private static final int HEIGHT = 756;
@@ -431,6 +432,23 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
             } catch (Exception ex){
                 SwgAuxiliar.msgExcepcion(ex);
             }
+        }
+    }
+
+    //Implementacion del patron observer(observer)
+    @Override
+    public void update() throws Exception {
+        if (Categorias.listaCategorias().isVisible()) {
+            actualizaListaCategorias();
+        }
+        if (Libros.listaLibros().isVisible()) {
+            actualizaListaLibros();
+        }
+        if (Prestamos.listaPrestamos().isVisible()) {
+            actualizaListaPrestamos();
+        }
+        if (Usuarios.listaUsuarios().isVisible()) {
+            actualizaListaUsuarios();
         }
     }
 }
