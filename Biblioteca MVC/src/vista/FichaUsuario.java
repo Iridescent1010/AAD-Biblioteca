@@ -2,8 +2,6 @@ package vista;
 
 import excepciones.CampoVacioExcepcion;
 import modelo.Usuario;
-import modelo.observer.Observable;
-import modelo.observer.Observer;
 import presentador.PresentadorUsuario;
 import presentador.VistaUsuario;
 import vista.helper.SwgAuxiliar;
@@ -22,7 +20,7 @@ import java.awt.event.*;
  * @author AGE
  * @version 2
  */
-public class FichaUsuario extends JInternalFrame implements VistaUsuario, ActionListener, InternalFrameListener, FocusListener , KeyListener, Observable {
+public class FichaUsuario extends JInternalFrame implements VistaUsuario, ActionListener, InternalFrameListener, FocusListener , KeyListener{
     private static final int WIDTH = 450;
     private static final int HEIGHT = 150;
     private Usuario usuario;
@@ -168,8 +166,6 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
                 actualizaformulario();
             }
             else presentador.modifica();
-            notifyObservers();//en vez de usar FormMain.actualizaListaUsuarios(); usamos notify observers
-
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
@@ -183,8 +179,6 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                notifyObservers(); //en vez de usar FormMain.actualizaListaUsuarios(); usamos notify observers
-
                 JOptionPane.showMessageDialog(this,"Usuario borrado con éxito!!");
                 dispose();
             } catch (Exception e) {
@@ -274,25 +268,5 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-
-    //Implementacion del patron observer(observable)
-    @Override
-    public void addObserver(Observer o) {
-
-    }
-
-    @Override
-    public void deleteObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers() {
-        try {
-            FormMain.getInstance().update();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

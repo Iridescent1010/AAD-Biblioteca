@@ -94,7 +94,7 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
         add(scrollPane);
     }
 
-    private void setVentana() throws SQLException, CampoVacioExcepcion, IOException {
+    private void setVentana() {
         getContentPane().setBackground(Color.WHITE);
         setTitle("Listado de libros:");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
@@ -146,7 +146,6 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaLibros();
             } catch (Exception e) {
                 SwgAuxiliar.msgExcepcion(e);
             }

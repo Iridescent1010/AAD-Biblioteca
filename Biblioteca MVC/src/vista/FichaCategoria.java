@@ -1,12 +1,10 @@
 package vista;
 
+import presentador.PresentadorCategoria;
 import excepciones.CampoVacioExcepcion;
 import modelo.Categoria;
-import modelo.observer.Observable;
-import modelo.observer.Observer;
-import presentador.PresentadorCategoria;
-import presentador.VistaCategoria;
 import vista.helper.SwgAuxiliar;
+import presentador.VistaCategoria;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -14,8 +12,6 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Formulario que permite interactuar (insertar, modificar o borrar)
@@ -23,13 +19,11 @@ import java.util.Set;
  * @author AGE
  * @version 2
  */
-public class FichaCategoria extends JInternalFrame implements VistaCategoria, KeyListener, ActionListener, FocusListener, InternalFrameListener, Observable {
+public class FichaCategoria extends JInternalFrame implements VistaCategoria, KeyListener, ActionListener, FocusListener, InternalFrameListener {
     private static final int WIDTH = 350;
     private static final int HEIGHT = 120;
     private final Categoria categoria;
     private PresentadorCategoria presentador;
-
-    private Set<Observer> observerSet = new HashSet<>();
 
     private JTextField eCategoria;{
         eCategoria=new JTextField();
@@ -141,8 +135,6 @@ public class FichaCategoria extends JInternalFrame implements VistaCategoria, Ke
                 actualizaformulario();
             }
             else presentador.modifica();
-            notifyObservers(); // en vez de usar FormMain.actualizaListaCategorias(); usamos notify observers
-
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
@@ -156,7 +148,6 @@ public class FichaCategoria extends JInternalFrame implements VistaCategoria, Ke
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                notifyObservers(); // en vez de usar FormMain.actualizaListaCategorias(); usamos notify observers
                 JOptionPane.showMessageDialog(this,"Categoria borrado con éxito!!");
                 dispose();
             } catch (Exception e) {
@@ -242,25 +233,5 @@ public class FichaCategoria extends JInternalFrame implements VistaCategoria, Ke
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-    //Implementacion del patron observer(observable)
-
-    @Override
-    public void addObserver(Observer o) {
-
-    }
-
-    @Override
-    public void deleteObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers(){
-        try {
-            FormMain.getInstance().update();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

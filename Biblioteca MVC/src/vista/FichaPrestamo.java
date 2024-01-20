@@ -5,8 +5,6 @@ import modelo.Categoria;
 import modelo.Libro;
 import modelo.Prestamo;
 import modelo.Usuario;
-import modelo.observer.Observable;
-import modelo.observer.Observer;
 import presentador.PresentadorPrestamo;
 import presentador.VistaPrestamo;
 import vista.helper.Libros;
@@ -26,7 +24,7 @@ import java.util.List;
  * @author AGE
  * @version 2
  */
-public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, ActionListener, InternalFrameListener, FocusListener, KeyListener, Observable {
+public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, ActionListener, InternalFrameListener, FocusListener, KeyListener {
 
     private static final int WIDTH = 350;
     private static final int HEIGHT = 405;
@@ -47,6 +45,9 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
         pCheckLibro.add(ckTitulo);
         pCheckLibro.add(ckAutor);
         pCheckLibro.add(ckEditorial);
+    }
+    public void updateCategorias() {
+        presentador.listaAllCategorias();
     }
     private JComboBox cbCategoria=new JComboBox();{
         cbCategoria.addFocusListener(this);
@@ -371,8 +372,6 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
                 actualizaformulario();
             }
             else presentador.modifica();
-            notifyObservers();// en vez de usar FormMain.actualizaListaPrestamos(); usamos notify observers
-
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
             dispose();
         } catch (Exception e) {
@@ -387,8 +386,6 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                notifyObservers();// en vez de usar FormMain.actualizaListaPrestamos(); usamos notify observers
-
                 JOptionPane.showMessageDialog(this, "Prestamo borrado con éxito!!");
                 dispose();
             } catch (Exception e) {
@@ -468,26 +465,6 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-
-    //Implementacion del patron observer(observable)
-    @Override
-    public void addObserver(Observer o) {
-
-    }
-
-    @Override
-    public void deleteObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers() {
-        try {
-            FormMain.getInstance().update();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }
 
