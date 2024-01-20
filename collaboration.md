@@ -32,22 +32,39 @@ log de los libros)
 
 #### 2. Implementar patrón Observer
 
-- [ ] Explicación del patrón observer en readme.md
-- [ ] Implementación de observer
-    - [ ] Interfaz `Observer`
-    - [ ] Interfaz `Observable`
+- [x] Explicación del patrón observer en readme.md
+- [x] Implementación de observer
+    - [x] Interfaz `Observer`
+    - [x] Interfaz `Observable`
 
 Para que la interfaz refleje las últimas modificaciones que ocurran en los datos.
+- [ ] Revisar implementación de observer [Todos]
 
 > Creo que lo mejor será estudiar el patrón Observer en un ejemplo más pequeño antes de implementarlo en el proyecto.
 
 #### 3. Revisar implementación del patrón **MVC** (Modelo Vista Controlador)
 
+hmm, no se muy bien que podemos hacer aquí...
+
 #### 4. Extra (nuevas funcionalidades)
+
+- [ ] Revisar y corregir errores:
+    - [ ] Mensajes de error infinitos sin sentido [Iridescent]
+    - [ ] Index out of bounds en las ventanas `Lista` [Iridescent]
+    - [ ] Búsqueda de libros y usuarios en la ventana de creación de `Prestamo` [Neka]
+- [ ] Vista de libros por categoría [Neka]
+- [ ] Usuario y contraseña de hibernate (no deben aparecer en [`hibernate.cfg.xml`](Biblioteca%20MVC/hibernatecfg.xml) [Ridu]
+- [ ] **Imagen de fondo** [Ridu]
 
 > "Estas nuevas funcionalidades inventadas por el grupo serán tenidas en cuenta en la nota."
 
 ### Presentación
+
+- [ ] Introducción [Todos]
+- [ ] Correspondencia objeto-relacional [Ridu]
+- [ ] Explicación patrón observer [Iridescent]
+- [ ] Modelo-Vista-Controlador [Neka]
+- [ ] Dificultades encontradas [Todos]
 
 > La presentación es el [`readme.md`](./readme.md)
 
@@ -93,6 +110,10 @@ Para que la interfaz refleje las últimas modificaciones que ocurran en los dato
 > Patrón observer
 
 ## 📄 Registro de cambios
+
+### 19/01/2024
+
+- Implementado **Patrón Observer**
 
 ### 18/01/2024
 
