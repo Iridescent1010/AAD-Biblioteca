@@ -1,6 +1,5 @@
 package modelo;
 import excepciones.CampoVacioExcepcion;
-import modelo.old.PrestamosDTO;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,7 +24,7 @@ public class Usuario extends Entidad {
     @Column(name = "apellidos", nullable = true, length = -1)
     private String apellidos;
     @OneToMany(mappedBy = "usuario")
-    private Collection<PrestamosDTO> prestamos;
+    private Collection<Prestamo> prestamos;
 
     /**
      * Getter para atributo id
@@ -88,11 +87,11 @@ public class Usuario extends Entidad {
         return Objects.hash(id, nombre, apellidos);
     }
 
-    public Collection<PrestamosDTO> getPrestamos() {
+    public Collection<Prestamo> getPrestamos() {
         return prestamos;
     }
 
-    public void setPrestamos(Collection<PrestamosDTO> prestamos) {
+    public void setPrestamos(Collection<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
     @Override

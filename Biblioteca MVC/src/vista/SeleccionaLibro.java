@@ -57,6 +57,9 @@ public class SeleccionaLibro extends JDialog implements VistaLibros, FocusListen
 
     @Override
     public Libro getLibro() {
+        int selectedRow = jTable.getSelectedRow();
+        if (selectedRow == -1)
+            return null;
         return libros.get(jTable.getSelectedRow());
     }
 
@@ -75,6 +78,7 @@ public class SeleccionaLibro extends JDialog implements VistaLibros, FocusListen
     public SeleccionaLibro(Frame owner, String title, boolean modal, BusquedaLibro busquedaLibro) {
         super(owner,title,modal);
         this.busquedaLibro=busquedaLibro;
+        System.out.println(busquedaLibro);
         setVentana();
         setContenedores();
         addKeyListener(this);
@@ -98,7 +102,7 @@ public class SeleccionaLibro extends JDialog implements VistaLibros, FocusListen
     }
 
     private void selecciona() {
-        if (jTable.getSelectedRow()>-1){
+        if (jTable.getSelectedRow() > -1){
             busquedaLibro.idSel=getLibro().getId();
             dispose();
         }

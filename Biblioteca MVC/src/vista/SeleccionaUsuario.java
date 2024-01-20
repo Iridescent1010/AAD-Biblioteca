@@ -58,7 +58,11 @@ public class SeleccionaUsuario extends JDialog implements VistaUsuarios, FocusLi
 
     @Override
     public Usuario getUsuario() {
-        return usuarios.get(jTable.getSelectedRow());
+        int selectedRow = jTable.getSelectedRow();
+        if (selectedRow == -1)
+            return null;
+
+        return usuarios.get(selectedRow);
     }
 
     @Override
