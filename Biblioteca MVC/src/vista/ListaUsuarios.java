@@ -127,7 +127,6 @@ public class ListaUsuarios extends JInternalFrame implements VistaUsuarios, Mous
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaUsuarios();
             } catch (Exception e) {
                 SwgAuxiliar.msgExcepcion(e);
             }

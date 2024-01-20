@@ -166,7 +166,6 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
                 actualizaformulario();
             }
             else presentador.modifica();
-            FormMain.actualizaListaUsuarios();
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
@@ -180,7 +179,6 @@ public class FichaUsuario extends JInternalFrame implements VistaUsuario, Action
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaUsuarios();
                 JOptionPane.showMessageDialog(this,"Usuario borrado con éxito!!");
                 dispose();
             } catch (Exception e) {

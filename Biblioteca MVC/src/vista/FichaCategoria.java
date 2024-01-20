@@ -135,7 +135,6 @@ public class FichaCategoria extends JInternalFrame implements VistaCategoria, Ke
                 actualizaformulario();
             }
             else presentador.modifica();
-            FormMain.actualizaListaCategorias();
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage(),"Error: ",JOptionPane.ERROR_MESSAGE);
@@ -149,7 +148,6 @@ public class FichaCategoria extends JInternalFrame implements VistaCategoria, Ke
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaCategorias();
                 JOptionPane.showMessageDialog(this,"Categoria borrado con éxito!!");
                 dispose();
             } catch (Exception e) {

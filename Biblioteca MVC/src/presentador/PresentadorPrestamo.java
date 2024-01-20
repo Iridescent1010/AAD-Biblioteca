@@ -1,8 +1,18 @@
 package presentador;
 
+import excepciones.CampoVacioExcepcion;
 import modelo.dao.CategoriaDAO;
 import modelo.dao.PrestamoDAO;
-public class PresentadorPrestamo {
+import observer.EventType;
+import observer.Observable;
+import observer.Observer;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PresentadorPrestamo implements Observable {
     private PrestamoDAO prestamoDAO;
     private CategoriaDAO categoriaDAO;
     private VistaPrestamo vistaPrestamo;
@@ -15,14 +25,17 @@ public class PresentadorPrestamo {
 
     public void borra() throws Exception {
         prestamoDAO.borrar(vistaPrestamo.getPrestamo().getId());
+        notifyObservers();
     }
 
     public void inserta() throws Exception {
         prestamoDAO.insertar(vistaPrestamo.getPrestamo());
+        notifyObservers();
     }
 
     public void modifica() throws Exception {
         prestamoDAO.modificar(vistaPrestamo.getPrestamo());
+        notifyObservers();
     }
 
     public void listaAllPrestamos() throws Exception {
@@ -36,5 +49,26 @@ public class PresentadorPrestamo {
         } catch (Exception e){
             vistaPrestamo.setCategorias(null);
         }
+    }
+
+    // Métodos observable:
+
+    private List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void notifyObservers() throws SQLException, IOException, CampoVacioExcepcion {
+        for (Observer obs : observers) {
+            obs.update(EventType.PrestamoChanged);
+        }
+    }
+
+    @Override
+    public void addObserver(Observer obs) {
+        observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(Observer obs) {
+        observers.remove(obs);
     }
 }

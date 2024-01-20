@@ -6,6 +6,8 @@ import modelo.Libro;
 import modelo.Prestamo;
 import modelo.Usuario;
 import modelo.dao.helper.Entidades;
+import observer.EventType;
+import observer.Observer;
 import vista.componentes.MiBarraDeEstado;
 import vista.helper.*;
 
@@ -22,11 +24,13 @@ import java.util.List;
  * @author AGE
  * @version 2
  */
-public class FormMain extends JFrame implements ActionListener, FocusListener, WindowListener,KeyListener {
+public class FormMain extends JFrame implements ActionListener, FocusListener, WindowListener,KeyListener, Observer {
     private static FormMain main=null;
     private static final int WIDTH = 1024;
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
+
+
 
     private JMenu mArchivo;{
         mArchivo=new JMenu("Archivo");
@@ -358,30 +362,67 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     public static int posInterna() {
         return FormMain.getInstance().getDesktopPane().getComponentCount()*25; // hasta que no se visualiza no se contabiliza
     }
-    public static void actualizaListaUsuarios() throws SQLException, CampoVacioExcepcion, IOException {
+
+    @Override
+    public void update(EventType event) throws SQLException, IOException, CampoVacioExcepcion {
+        switch (event) {// TODO: can be improved by using a map <EventType, Component>
+            case UsuarioChanged -> {
+                actualizaListaUsuarios();
+                actualizaListaPrestamos();
+            }
+            case CategoriaChanged -> {
+                actualizaListaCategorias();
+                actualizaListaLibros();
+                actualizaFichaLibros();
+                actualizaFichaPrestamos();
+            }
+            case LibroChanged -> {
+                actualizaListaLibros();
+                actualizaListaPrestamos();
+            }
+            case PrestamoChanged -> actualizaListaPrestamos();
+        }
+
+    }
+
+    public void actualizaListaUsuarios() throws SQLException, CampoVacioExcepcion, IOException {
         List<Usuario> usuarios = Entidades.leerAllUsuarios();
-        for (int i=0;i< FormMain.getInstance().getDesktopPane().getComponentCount();i++)
-            if (FormMain.getInstance().getDesktopPane().getComponent(i) instanceof  ListaUsuarios)
-                ((ListaUsuarios) FormMain.getInstance().getDesktopPane().getComponent(i)).setUsuarios(usuarios);
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
+            if (getDesktopPane().getComponent(i) instanceof  ListaUsuarios)
+                ((ListaUsuarios) getDesktopPane().getComponent(i)).setUsuarios(usuarios);
     }
-    public static void actualizaListaCategorias() throws SQLException, CampoVacioExcepcion, IOException {
+    public void actualizaListaCategorias() throws SQLException, CampoVacioExcepcion, IOException {
         List<Categoria> categorias = Entidades.leerAllCategorias();
-        for (int i=0;i< FormMain.getInstance().getDesktopPane().getComponentCount();i++)
-            if (FormMain.getInstance().getDesktopPane().getComponent(i) instanceof  ListaCategorias)
-                ((ListaCategorias) FormMain.getInstance().getDesktopPane().getComponent(i)).setCategorias(categorias);
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
+            if (getDesktopPane().getComponent(i) instanceof  ListaCategorias)
+                ((ListaCategorias) getDesktopPane().getComponent(i)).setCategorias(categorias);
     }
-    public static void actualizaListaLibros() throws SQLException, CampoVacioExcepcion, IOException {
+    public void actualizaListaLibros() throws SQLException, CampoVacioExcepcion, IOException {
         List<Libro> libros = Entidades.leerAllLibros();
-        for (int i=0;i< FormMain.getInstance().getDesktopPane().getComponentCount();i++)
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
             if (FormMain.getInstance().getDesktopPane().getComponent(i) instanceof  ListaLibros)
-                ((ListaLibros) FormMain.getInstance().getDesktopPane().getComponent(i)).setLibros(libros);
+                ((ListaLibros) getDesktopPane().getComponent(i)).setLibros(libros);
     }
-    public static void actualizaListaPrestamos() throws SQLException, CampoVacioExcepcion, IOException {
+    public void actualizaListaPrestamos() throws SQLException, CampoVacioExcepcion, IOException {
         List<Prestamo> prestamos = Entidades.leerAllPrestamos();
-        for (int i=0;i< FormMain.getInstance().getDesktopPane().getComponentCount();i++)
-            if (FormMain.getInstance().getDesktopPane().getComponent(i) instanceof  ListaPrestamos)
-                ((ListaPrestamos) FormMain.getInstance().getDesktopPane().getComponent(i)).setPrestamos(prestamos);
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
+            if (getDesktopPane().getComponent(i) instanceof  ListaPrestamos)
+                ((ListaPrestamos) getDesktopPane().getComponent(i)).setPrestamos(prestamos);
     }
+
+    public void actualizaFichaLibros() {
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
+            if (getDesktopPane().getComponent(i) instanceof  FichaLibro)
+                ((FichaLibro) getDesktopPane().getComponent(i)).updateCategorias();
+
+    }
+    public void actualizaFichaPrestamos() {
+        for (int i=0;i< getDesktopPane().getComponentCount();i++)
+            if (getDesktopPane().getComponent(i) instanceof  FichaPrestamo)
+                ((FichaPrestamo) getDesktopPane().getComponent(i)).updateCategorias();
+
+    }
+
 
     public static void barraEstado(String mensaje){
         FormMain.getInstance().miBarraDeEstado.setInfo(mensaje);
@@ -433,4 +474,5 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
             }
         }
     }
+
 }

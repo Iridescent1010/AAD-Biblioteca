@@ -141,6 +141,9 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
         presentador.listaAllCategorias();
     }
 
+    public void updateCategorias() {
+        presentador.listaAllCategorias();
+    }
     @Override
     public void setCategorias(List<Categoria> categorias) {
         cbCategoria.removeAllItems();
@@ -214,7 +217,6 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
                 actualizaformulario();
             }
             else presentador.modifica();
-            FormMain.actualizaListaLibros();
             JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
@@ -228,7 +230,6 @@ public class FichaLibro extends JInternalFrame implements VistaLibro, ActionList
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
             try {
                 presentador.borra();
-                FormMain.actualizaListaLibros();
                 JOptionPane.showMessageDialog(this, "Libro borrado con éxito!!");
                 dispose();
             } catch (Exception e) {
