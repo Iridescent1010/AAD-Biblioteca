@@ -68,16 +68,15 @@ Revisada :)
 
 ### Presentación
 
-- [ ] Introducción [Todos]
-- [ ] Correspondencia objeto-relacional [Ridu]
-- [ ] Explicación patrón observer [Iridescent]
-- [ ] Modelo-Vista-Controlador [Neka]
-- [ ] Dificultades encontradas [Todos]
-
 > La presentación es el [`readme.md`](./readme.md)
 
 - Duración: **10 minutos** (2:30 por alumno)
-- Explicar **correspondencia** entre clases y tablas
+
+- Introducción :)
+- Explicar **correspondencia** entre clases y tablas [Ridu] 
+   - **Hibernate** (dificultades encontradas...)
+   - Hibernate DAO
+   - Conexión
 - Explicar implementación de **Observer**
 - Explicar revisión del **MVC** (Modelo-Vista-Controlador)
 - **Problemas** encontrados y **soluciones** a esos problemas 
