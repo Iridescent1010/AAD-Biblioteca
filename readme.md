@@ -37,6 +37,20 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 
 ## 🗺 Correspondencia Objeto Relacional
 
+### Hibernate
+    - Importación de librerias Maven
+    - Configuración Maven
+    - Persistencia
+
+### Implementaciones DAO
+    - Implementación anotaciones JPA en las clases
+    - Creamos las nuevas DAO con Hibernate implementado
+
+### Conexión
+    - Modificación en los xml
+    - Implementacion del EntityManager
+    - Conexión con Session
+
 ## 🔭 Patrón Observer
 
 ### Teoría
