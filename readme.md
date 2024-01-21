@@ -148,7 +148,6 @@ Este patrón de diseño es ampliamente usado por varias razones.
 3. Eliminar archivos .jar de git ([StackOverflow](https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore))
     - `git rm --cached <file>`
 4. Merge conflicts
-5. `@Transient`
 
 
 #### Al cambiar interfaces DAO JDBC por interfaces DAO Hibernate
@@ -200,7 +199,24 @@ Este patrón de diseño es ampliamente usado por varias razones.
     getPrestamo().setLibro(selected);
     ```
 
+
 ![captura](./media/prestamo_creation.png)
+
+#### `git gud`
+
+**`$ git log --graph --oneline --abbrev-commit --all`**
+![git_log](./media/gitlog.png)
+
+**`$ git mergetool` y `vimdiff`**
+![vimdiff](./media/vimdiff.png)
+
+**`:q!`**
+
+<div align="center">
+
+![vim](./media/exitvim.png)
+
+</div>
 
 ---
 
@@ -213,4 +229,5 @@ Herramientas:
   - JDK 17
   - Hibernate core 5.6.14
   - JPA
+Fecha: 2024-01-21
 ```
