@@ -37,6 +37,20 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 
 ## 🗺 Correspondencia Objeto Relacional
 
+### Hibernate
+    - Importación de librerias Maven
+    - Configuración Maven
+    - Persistencia
+
+### Implementaciones DAO
+    - Implementación anotaciones JPA en las clases
+    - Creamos las nuevas DAO con Hibernate implementado
+
+### Conexión
+    - Modificación en los xml
+    - Implementacion del EntityManager
+    - Conexión con Session
+
 ## 🔭 Patrón Observer
 
 ### Teoría
@@ -100,10 +114,30 @@ interface Observable {
 
 ## 🕹 Modelo-vista-controlador
 
-## Nuevas funcionalidades
+El modelo vista controlador es utilizado en el diseño de **interfaces de usuario**
+para dividir la **lógica** del programa en tres elementos conectados entre sí:
+
+- **Modelo:** La base de datos y el acceso a esta desde el programa
+    - En este proyecto las clases `DAO` y `POJO`
+- **Vista:** Se encarga de **presentar los datos** al usuario y controlar la interacción.
+    - En este proyecto serían las clases `Ficha` y `Vista` (FichaPrestamo, FichaUsuario ...)
+- **Controlador:** Se encarga de conectar estas dos capas
+    - En nuestro caso las clases `Presentador`
+
+Este patrón de diseño es ampliamente usado por varias razones.
+
+1. Permite cambiar la vista sin que sea necesario intervenir en las otras dos capas (por ejemplo, navegador web o aplicación móvil)
+    - De esta forma las aplicaciones son **más escalables**
+2. Permite **dividir** una aplicación extensa en tres capas más **manejables**
+    - Por ejemplo, en nuestro proyecto no tuvimos que hacer cambios en la vista
+      al modificar la capa del modelo (jdbc por Hibernate)
+
+## ✨ Nuevas funcionalidades
 
 - Exportar tablas a csv
 - Imagen de fondo
+- Seleccionar libros pertenecientes a una categoría
+- Eliminar errores molestos
 
 ## 🏔 Dificultades encontradas
 
