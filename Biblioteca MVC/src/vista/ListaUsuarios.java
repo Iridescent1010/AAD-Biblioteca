@@ -116,15 +116,21 @@ public class ListaUsuarios extends JInternalFrame implements VistaUsuarios, Mous
 
     private void muestraFicha(Usuario usuario) {
         try {
-            FormMain.getInstance().getDesktopPane().add(Usuarios.fichaUsuario(usuario));
-            FormMain.getInstance().getDesktopPane().selectFrame(false);
+            if (usuario == null) {
+                SwgAuxiliar.msgError("Selecciona antes un usuario");
+            } else {
+                FormMain.getInstance().getDesktopPane().add(Usuarios.fichaUsuario(usuario));
+                FormMain.getInstance().getDesktopPane().selectFrame(false);
+            }
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
 
     }
     private void borrar(Usuario usuario) {
-        if (usuario!= null){
+        if (usuario == null) {
+            SwgAuxiliar.msgError("Selecciona antes un usuario");
+        } else {
             if (JOptionPane.showConfirmDialog(this,
                     String.format("¿Desea BORRAR el usuario: %s %s?",usuario.getNombre(),usuario.getApellidos()),
                     "Atención:",

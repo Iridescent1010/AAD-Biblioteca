@@ -102,9 +102,9 @@ public class Sql {
         if (entities.size() > 1)
             csv.append(entities.get(0).getCsvHeader());
 
-        for (Entidad pojo : entities) {
+        for (Entidad entidad : entities) {
             csv.append(System.lineSeparator());
-            csv.append(pojo.getCsv());
+            csv.append(entidad.getCsv());
         }
 
         Files.createDirectories(path.getParent()); // crea las carpetas si no existen :)

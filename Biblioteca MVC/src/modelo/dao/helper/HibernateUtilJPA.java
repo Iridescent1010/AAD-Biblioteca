@@ -30,6 +30,7 @@ public class HibernateUtilJPA {
     }
 
     private static EntityManagerFactory createEntityManagerFactory() {
+        suppressWarnings();
         Map<String, Object> properties = new HashMap<>();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Reemplaza con el dialecto de tu base de datos
         // Puedes agregar más propiedades según tus necesidades

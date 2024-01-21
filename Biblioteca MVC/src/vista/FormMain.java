@@ -31,8 +31,6 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
 
-
-
     private JMenu mArchivo;{
         mArchivo=new JMenu("Archivo");
         mArchivo.setMnemonic('A');
@@ -497,29 +495,22 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         else if (e.getSource()== miNuevoPrestamo)
             nuevoPrestamo();
         else if (e.getSource()==miGuardarLibro) {
-            try {
-                SwgAuxiliar.grabarCSV(Table.LIBROS);
-            } catch (Exception ex){
-                SwgAuxiliar.msgExcepcion(ex);
-            }
+            grabarCsv(Table.LIBROS);
         } else if (e.getSource()==miGuardarCategoria) {
-            try {
-                SwgAuxiliar.grabarCSV(Table.CATEGORIAS);
-            } catch (Exception ex){
-                SwgAuxiliar.msgExcepcion(ex);
-            }
+            grabarCsv(Table.CATEGORIAS);
         } else if (e.getSource() == miGuardarUsuarios) {
-            try {
-                SwgAuxiliar.grabarCSV(Table.USUARIOS);
-            } catch (Exception ex) {
-                SwgAuxiliar.msgExcepcion(ex);
-            }
+            grabarCsv(Table.USUARIOS);
         } else if (e.getSource() == miGuardarPrestamos) {
-            try {
-                SwgAuxiliar.grabarCSV(Table.PRESTAMOS);
-            } catch (Exception ex) {
-                SwgAuxiliar.msgExcepcion(ex);
-            }
+            grabarCsv(Table.PRESTAMOS);
+        }
+    }
+
+    private static void grabarCsv(Table tabla) {
+        try {
+            SwgAuxiliar.grabarCSV(tabla);
+            SwgAuxiliar.msgInfo("Tabla " + tabla.toString().toLowerCase() + " exportada con éxito");
+        } catch (Exception ex) {
+            SwgAuxiliar.msgExcepcion(ex);
         }
     }
 

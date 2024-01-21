@@ -34,6 +34,10 @@ public class SwgAuxiliar {
         JOptionPane.showMessageDialog(parent,msg,"Error: ",JOptionPane.ERROR_MESSAGE);
     }
 
+    public static void msgInfo(String msg) {
+        JOptionPane.showMessageDialog(FormMain.getInstance(), msg, "Información: ", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     /**
      * Para asignar a un panel que los objetos que reciben el foco puedan responder al enter y al tab
      * @param panel objeto panel donde actuara las teclas enter y tab

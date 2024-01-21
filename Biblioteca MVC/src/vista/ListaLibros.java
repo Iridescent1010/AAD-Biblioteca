@@ -134,8 +134,12 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
 
     private void muestraFicha(Libro libro) {
         try {
-            FormMain.getInstance().getDesktopPane().add(Libros.fichaLibro(libro));
-            FormMain.getInstance().getDesktopPane().selectFrame(false);
+            if (libro == null) {
+                SwgAuxiliar.msgError("Selecciona antes un libro");
+            } else {
+                FormMain.getInstance().getDesktopPane().add(Libros.fichaLibro(libro));
+                FormMain.getInstance().getDesktopPane().selectFrame(false);
+            }
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
@@ -143,9 +147,11 @@ public class ListaLibros extends JInternalFrame implements VistaLibros, MouseLis
     }
 
     private void borrar(Libro libro) {
-        if (libro !=null){
+        if (libro == null) {
+            SwgAuxiliar.msgError("Selecciona antes un libro");
+        } else {
             if (JOptionPane.showConfirmDialog(this,
-                    String.format("¿Desea BORRAR el libro: %s %s?",libro.getNombre(),libro.getAutor()),
+                    String.format("¿Desea BORRAR el libro: %s del autor %s?",libro.getNombre(),libro.getAutor()),
                     "Atención:",
                     JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
                 try {
