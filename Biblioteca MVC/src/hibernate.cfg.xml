@@ -7,13 +7,13 @@
 
     <property name="connection.url">jdbc:mysql://localhost:3306/BIBLIOTECA</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name="connection.username">admin</property>
-    <property name="connection.password">pwd13</property>
-    <mapping class="modelo.dao.CategoriaDAO"/>
-    <mapping class="modelo.dao.HistoricoDAO"/>
-    <mapping class="modelo.dao.LibroDAO"/>
-    <mapping class="modelo.dao.PrestamoDAO"/>
-    <mapping class="modelo.dao.UsuarioDAO"/>
+    <!-- property name="connection.username">admin</property -->
+    <!-- property name="connection.password">pwd13</property -->
+    <mapping class="modelo.Categoria"/>
+    <mapping class="modelo.Historico"/>
+    <mapping class="modelo.Libro"/>
+    <mapping class="modelo.Prestamo"/>
+    <mapping class="modelo.Usuario"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

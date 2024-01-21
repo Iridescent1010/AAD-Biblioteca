@@ -1,5 +1,6 @@
 package vista;
 
+import modelo.dao.helper.HibernateUtilJPA;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,8 +22,6 @@ import java.awt.event.*;
 public class LoginPass extends JDialog implements ActionListener, WindowListener, KeyListener, FocusListener {
     private static final int WIDTH = 350;
     private static final int HEIGHT = 226;
-
-    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
     private Configuracion myConf;{
         try {
@@ -158,23 +157,14 @@ public class LoginPass extends JDialog implements ActionListener, WindowListener
         return bSalir;
     }*/
     private boolean conectar() {
-        boolean bSalir = false;
-        myConf.setUser(eUser.getText());
-
         try {
+            myConf.setUser(eUser.getText());
             myConf.setPassword(String.valueOf(ePass.getPassword()));
-
-            // Abre una nueva sesión de Hibernate
-            try (Session session = sessionFactory.openSession()) {
-                //La conexión fue exitosa
-                bSalir = true;
-            }
-
+            return HibernateUtilJPA.getEntityManagerFactory() != null;
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
-
-        return bSalir;
+        return false;
     }
 
     @Override
