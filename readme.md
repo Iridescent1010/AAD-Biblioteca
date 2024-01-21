@@ -39,7 +39,7 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
 
 ### Hibernate
     - Importación de librerias Maven
-    - Configuración Maven
+    - Configuración Hibernate
     - Persistencia
 
 ### Implementaciones DAO
