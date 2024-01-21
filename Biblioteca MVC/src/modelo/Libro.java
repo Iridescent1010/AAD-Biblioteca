@@ -31,8 +31,6 @@ public class Libro extends Entidad {
     @JoinColumn(name = "categoria", referencedColumnName = "id")
     private Categoria categoria;
 
-    @Transient
-    private int categoriaId;
     /**
      * Getter para atributo id
      * @return el valor del atributo id
@@ -97,14 +95,16 @@ public class Libro extends Entidad {
      * @return el valor del atributo categoria
      */
     public int getCategoriaId() {
-        return categoriaId;
+       if (categoria == null) return -1;
+       return categoria.getId();
     }
     /**
      * Setter para asignar una categoria nuevo;
      * @param categoria nuevo valor para el atributo categoria
      */
     public void setCategoriaId(int categoria) {
-        categoriaId = categoria;
+        if (this.categoria != null)
+            this.categoria.setId(categoria);
     }
 
     @Override
@@ -112,8 +112,18 @@ public class Libro extends Entidad {
         return String.format("%d. %s %s",id,nombre,editorial);
     }
 
+    @Override
+    public String getCsvHeader() {
+        return "id, nombre, autor, editorial, categoria";
+    }
+
+    @Override
+    public String getCsv() {
+        return String.format("%d, %s, %s, %s, %s",id, nombre, autor, editorial, getCategoriaDescr());
+    }
+
     public Categoria getObjCategoria(){
-        return Entidades.categoria(categoriaId);
+        return categoria;
     }
 
     public String getCategoriaDescr() {

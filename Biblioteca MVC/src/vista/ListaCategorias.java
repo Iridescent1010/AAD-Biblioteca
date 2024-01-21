@@ -22,10 +22,7 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
     private static final int HEIGHT = 200;
     private List<Categoria> categorias;
     private PresentadorCategoria presentador;
-    private JMenuItem miFicha;
-
-
-    {
+    private JMenuItem miFicha; {
         miFicha=new JMenuItem("Ficha");
         miFicha.setMnemonic('F');
         miFicha.addActionListener(this);
@@ -40,11 +37,17 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
         miBorra.setMnemonic('B');
         miBorra.addActionListener(this);
     }
+    private JMenuItem miConsulta; {
+        miConsulta = new JMenuItem("Consultar libros");
+        miConsulta.setMnemonic('C');
+        miConsulta.addActionListener(this);
+    }
     private JPopupMenu jPopupMenu;{
         jPopupMenu = new JPopupMenu();
         jPopupMenu.add(miFicha);
         jPopupMenu.add(miNuevo);
         jPopupMenu.add(miBorra);
+        jPopupMenu.add(miConsulta);
     }
     private JTable jTable;{
         jTable=new JTable();
@@ -129,14 +132,21 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
 
     private void muestraFicha(Categoria categoria) {
         try {
-            FormMain.getInstance().getDesktopPane().add(Categorias.fichaCategoria(categoria));
-            FormMain.getInstance().getDesktopPane().selectFrame(false);
+            if (categoria == null) {
+                SwgAuxiliar.msgError("Selecciona antes una categoría");
+            }
+            if (categoria != null) {
+                FormMain.getInstance().getDesktopPane().add(Categorias.fichaCategoria(categoria));
+                FormMain.getInstance().getDesktopPane().selectFrame(false);
+            }
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
     }
     private void borrar() {
-        if (getCategoria()!=null){
+        if (getCategoria() == null) {
+            SwgAuxiliar.msgError("Selecciona antes una categoría");
+        } else {
             if (JOptionPane.showConfirmDialog(this,
                     String.format("¿Desea BORRAR la categoría: %s?",getCategoria().getCategoria()),
                     "Atención:",
@@ -211,10 +221,23 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
             muestraFicha(new Categoria());
         else if (e.getSource().equals(miBorra))
             borrar();
+        else if (e.getSource().equals(miConsulta))
+            muestraDialogoConsulta();
     }
 
-
-
+    private void muestraDialogoConsulta() {
+        Categoria selected = getCategoria();
+        if (selected == null) {
+            SwgAuxiliar.msgError("Selecciona antes una categoría");
+        } else {
+            try {
+                new ConsultaLibro( null, "Libros de " + selected.getCategoria(), true, selected);
+                // FormMain.getInstance().getDesktopPane().selectFrame(false);
+            } catch (Exception e) {
+                SwgAuxiliar.msgExcepcion(e);
+            }
+        }
+    }
 
 
 }

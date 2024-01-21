@@ -366,16 +366,21 @@ public class FichaPrestamo extends JInternalFrame implements VistaPrestamo, Acti
     }
 
     private void grabar() {
-        try {
-            if (getPrestamo().getIdPrestamo()==0) {
-                presentador.inserta();
-                actualizaformulario();
+        if (prestamo.getLibro() == null) {
+            SwgAuxiliar.msgError("No es posible guardar un prestamo sin libro");
+        } else if (prestamo.getUsuario() == null) {
+            SwgAuxiliar.msgError("No es posible guardar un prestamo sin usuario");
+        } else {
+            try {
+                if (getPrestamo().getIdPrestamo() == 0) {
+                    presentador.inserta();
+                    actualizaformulario();
+                } else presentador.modifica();
+                JOptionPane.showMessageDialog(this, "Grabado correctamente!!");
+                dispose();
+            } catch (Exception e) {
+                SwgAuxiliar.msgExcepcion(e);
             }
-            else presentador.modifica();
-            JOptionPane.showMessageDialog(this,"Grabado correctamente!!");
-            dispose();
-        } catch (Exception e) {
-            SwgAuxiliar.msgExcepcion(e);
         }
     }
 

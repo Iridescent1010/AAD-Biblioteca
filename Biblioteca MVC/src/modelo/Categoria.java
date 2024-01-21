@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-import modelo.old.LibroDTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,12 +25,15 @@ public class Categoria extends Entidad {
     @Basic
     @Column(name = "categoria", nullable = true, length = -1)
     private String categoria;
-    @OneToMany(mappedBy = "categoria")
-    private Collection<LibroDTO> libros;
+
+    // Lo usamos en la ventana de lista categorias
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
+    private Collection<Libro> libros;
 
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -64,16 +66,27 @@ public class Categoria extends Entidad {
         return Objects.hash(id, categoria);
     }
 
-    public Collection<LibroDTO> getLibros() {
+    public Collection<Libro> getLibros() {
         return libros;
     }
 
-    public void setLibros(Collection<LibroDTO> libros) {
+    public void setLibros(Collection<Libro> libros) {
         this.libros = libros;
     }
 
     @Override
     public String toString() {
         return String.format("%d. %s",id,categoria);
+    }
+
+
+    @Override
+    public String getCsvHeader() {
+        return "id, categoria";
+    }
+
+    @Override
+    public String getCsv() {
+        return String.format("%d, %s", id, categoria);
     }
 }
