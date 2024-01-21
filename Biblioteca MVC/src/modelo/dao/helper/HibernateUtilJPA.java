@@ -3,6 +3,7 @@ package modelo.dao.helper;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import singleton.Configuracion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,13 +31,17 @@ public class HibernateUtilJPA {
     }
 
     private static EntityManagerFactory createEntityManagerFactory() {
-        suppressWarnings();
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Reemplaza con el dialecto de tu base de datos
-        // Puedes agregar más propiedades según tus necesidades
+        try {
+            suppressWarnings();
+            Map<String, Object> properties = new HashMap<>();
+            properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Reemplaza con el dialecto de tu base de datos
+            properties.put("javax.persistence.jdbc.user", Configuracion.getInstance().getUser());
+            properties.put("javax.persistence.jdbc.password", Configuracion.getInstance().getPassword());
 
-        return new HibernatePersistenceProvider()
-                .createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
+            return new HibernatePersistenceProvider() .createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static void suppressWarnings() {
