@@ -96,6 +96,10 @@ public class Prestamo extends Entidad {
     public String getFecha(){
         return getFechaPrestamo().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
+
+    public String getStandardFormattedDate() {
+        return getFechaPrestamo().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
     /**
      * Setter para asignar una fecha de prestamo nueva;
      * @param fechaPrestamo nuevo valor para el atributo fechaPrestamo
@@ -150,5 +154,15 @@ public class Prestamo extends Entidad {
                     Fecha %s
                 """;
         return String.format(format,idPrestamo, usuario.toString(), libro.toString(), fechaPrestamo.toString());
+    }
+
+    @Override
+    public String getCsvHeader() {
+        return "idPrestamo, idLibro, idUsuario, fechaPrestamo";
+    }
+
+    @Override
+    public String getCsv() {
+        return String.format("%d, %d, %d, %s", idPrestamo, getLibroId(), getUsuarioId(), getStandardFormattedDate());
     }
 }

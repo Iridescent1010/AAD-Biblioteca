@@ -38,6 +38,8 @@ public class Historico extends Entidad {
     public int getId() {
         return idHistorico;
     }
+
+
     /**
      * Getter para atributo idHistorico
      * @return el valor del atributo idHistorico
@@ -110,6 +112,16 @@ public class Historico extends Entidad {
     @Override
     public String toString() {
         return String.format("%d, %s, %s, %s ", idHistorico, user,getFechaCad(),info);
+    }
+
+    @Override
+    public String getCsv() {
+        return toString();
+    }
+
+    @Override
+    public String getCsvHeader() {
+        return "idHistorico, user, fecha, info";
     }
 
     @Override
