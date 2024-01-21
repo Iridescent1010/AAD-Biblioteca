@@ -100,10 +100,22 @@ interface Observable {
 
 ## 🕹 Modelo-vista-controlador
 
-## Nuevas funcionalidades
+El modelo vista controlador es utilizado en el diseño de **interfaces de usuario**
+para dividir la **lógica** del programa en tres elementos conectados entre sí:
+
+- **Modelo:** La base de datos y el acceso a esta desde el programa
+    - En este proyecto las clases `DAO` y `POJO`
+- **Vista:** Se encarga de **presentar los datos** al usuario y controlar la interacción.
+    - En este proyecto serían las clases `Ficha` y `Vista` (FichaPrestamo, FichaUsuario ...)
+- **Controlador:** Se encarga de conectar estas dos capas
+    - En nuestro caso las clases `Presentador`
+
+## ✨ Nuevas funcionalidades
 
 - Exportar tablas a csv
 - Imagen de fondo
+- Seleccionar libros pertenecientes a una categoría
+- Eliminar errores molestos
 
 ## 🏔 Dificultades encontradas
 
