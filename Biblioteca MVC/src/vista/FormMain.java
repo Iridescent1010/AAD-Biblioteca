@@ -11,6 +11,7 @@ import observer.EventType;
 import observer.Observer;
 import vista.componentes.MiBarraDeEstado;
 import vista.helper.*;
+import vista.secret.SecretFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -183,6 +184,18 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         miNuevoPrestamo.addFocusListener(this);
         mPrestamos.add(miNuevoPrestamo);
     }
+    private JMenu mSecret; {
+        mSecret = new JMenu("?????");
+        mSecret.setFocusable(true);
+        mSecret.addFocusListener(this);
+    }
+    private JMenuItem miStery; {
+        miStery = new JMenuItem("???");
+        miStery.setFocusable(true);
+        miStery.addActionListener(this);
+        miStery.addFocusListener(this);
+        mSecret.add(miStery);
+    }
     private JMenuBar jMenuBar;{
         jMenuBar = new JMenuBar();
         jMenuBar.add(mArchivo);
@@ -190,6 +203,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         jMenuBar.add(mUsuarios);
         jMenuBar.add(mLibros);
         jMenuBar.add(mPrestamos);
+        jMenuBar.add(mSecret);
         jMenuBar.addFocusListener(this);
     }
     private MiBarraDeEstado miBarraDeEstado;{
@@ -516,6 +530,8 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
             muestraPrestamos();
         else if (e.getSource()== miNuevoPrestamo)
             nuevoPrestamo();
+        else if (e.getSource()==miStery)
+            new SecretFrame(this);
         else if (e.getSource()==miGuardarLibro) {
             grabarCsv(Table.LIBROS);
         } else if (e.getSource()==miGuardarCategoria) {

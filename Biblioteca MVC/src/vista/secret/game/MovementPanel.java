@@ -32,8 +32,8 @@ class MovementPanel extends JPanel {
         int lowerRectx = w / 2 - (int) Player.BASE_SIZE / 2;
         int lowerRecty = h - (int) Player.BASE_SIZE;
 
-        URL imageURL = getClass().getResource("/res/ship.png");
-        URL imageURL2 = getClass().getResource("/res/ship2.png");
+        URL imageURL = getClass().getResource("/resources/ship.png");
+        URL imageURL2 = getClass().getResource("/resources/ship2.png");
         imageSprite1 = new ImageIcon(imageURL);
         imageSprite2 = new ImageIcon(imageURL2);
         upper = new Player(0, upperRectx, upperRecty, Color.RED, imageSprite2, this);

@@ -70,9 +70,9 @@ public class Player {
         if (hp == 0) {
             switch (id) {
                 case 0:
-                    Main.gameOver("Merinde (el de abajo)");
+                    Game.gameOver("Merinde (el de abajo)");
                 case 1:
-                    Main.gameOver("Chincho (el de arriba)");
+                    Game.gameOver("Chincho (el de arriba)");
             }
         }
     }

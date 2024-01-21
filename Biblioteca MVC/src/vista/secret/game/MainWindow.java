@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
         this.add(panel);
         this.pack();
         this.setTitle("Me parece que me vas a dar la pelota");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.addKeyListener(input);
         this.setVisible(true);
     }

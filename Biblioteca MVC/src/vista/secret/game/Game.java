@@ -6,12 +6,13 @@
 package vista.secret.game;
 
 
-public class Main {
-    public static void main(String[] args) {
-        new MainWindow();
+public class Game {
+    static MainWindow mw;
+    public static void launch() {
+        mw = new MainWindow();
     }
     
     public static void gameOver(String winner) {
-        System.exit(0);
+        mw.dispose();
     }
 }
