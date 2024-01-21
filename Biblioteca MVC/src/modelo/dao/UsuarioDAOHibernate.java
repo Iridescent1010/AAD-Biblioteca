@@ -89,11 +89,11 @@ public class UsuarioDAOHibernate implements UsuarioDAO{
     public List<Usuario> leerAllUsuarios() throws Exception {
         EntityManager man = managerFactory.createEntityManager();
         try {
-            LogFile.saveLOG("[Hibernate] Todos los libros seleccionados");
+            LogFile.saveLOG("[Hibernate] Todos los usuarios seleccionados");
             String query = "SELECT l FROM Usuario l";
             return man.createQuery(query, Usuario.class).getResultList();
         } catch (Exception e) {
-            throw new Exception("Error: Imposible seleccionar los usuario", e);
+            throw new Exception("Error: Imposible seleccionar los usuarios", e);
         } finally {
             man.close();
         }

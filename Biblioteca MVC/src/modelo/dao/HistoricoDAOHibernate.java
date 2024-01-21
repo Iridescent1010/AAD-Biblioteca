@@ -62,6 +62,6 @@ public class HistoricoDAOHibernate implements HistoricoDAO {
         Historico historico = new Historico();
         historico.setUser(Configuracion.getInstance().getUser());
         historico.setInfo(msgLog);
-        new HistoricoDAOImpl(historico).insertar();
+        new HistoricoDAOHibernate(historico).insertar();
     }
 }

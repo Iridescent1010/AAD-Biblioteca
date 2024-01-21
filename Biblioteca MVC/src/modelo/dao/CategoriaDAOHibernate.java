@@ -72,7 +72,7 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
             categoria = man.merge(categoria);
             man.remove(categoria);
             trans.commit();
-            LogFile.saveLOG("[Hibernate] Categoria eliminada" + categoria.getId());
+            LogFile.saveLOG("[Hibernate] Categoria eliminada " + categoria.getId());
             return true;
         } catch (Exception e) {
             if (trans != null && trans.isActive())
@@ -92,7 +92,7 @@ public class CategoriaDAOHibernate implements CategoriaDAO {
             LogFile.saveLOG("[Hibernate] Categoria seleccionada " + id);
             return man.find(Categoria.class, id);
         } catch (Exception e) {
-            throw new Exception("Error: Imposible seleccionar la categoría", e);
+            throw new Exception("Error: Imposible seleccionar la categoría ", e);
         } finally {
             man.close();
         }
