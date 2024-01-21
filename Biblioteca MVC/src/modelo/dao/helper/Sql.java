@@ -1,11 +1,18 @@
 package modelo.dao.helper;
 
+import helper.Table;
+import modelo.Entidad;
+import modelo.Libro;
+import modelo.dao.*;
 import singleton.ConexionMySQL;
+
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.sql.*;
+import java.util.List;
 
 /**
  * Clase auxiliar con distintas funcionalidades a la hora de trabajar con SQL
@@ -77,4 +84,31 @@ public class Sql {
             }
         }
     }
+
+    public static void importCsvHibernate(Path path, Table tabla) throws Exception {
+        switch (tabla) {
+            case LIBROS -> writeCsv(path, new LibroDAOHibernate().leerAllLibros());
+            case USUARIOS -> writeCsv(path, new UsuarioDAOHibernate().leerAllUsuarios());
+            case PRESTAMOS -> writeCsv(path, new PrestamoDAOHibernate().leerAllPrestamos());
+            case CATEGORIAS -> writeCsv(path, new CategoriaDAOHibernate().leerAllCategorias());
+        }
+    }
+
+    // List<? extends entidad> -> acepta una lista de cualquier tipo que extienda entidad
+    // Lista de objetos que extienden entidad (Libro, Usuario, Categoria y Prestamo)
+    // He añadido un método getCsv() a la clase Entidad
+    private static void writeCsv(Path path, List<? extends Entidad> entities) throws IOException {
+        StringBuilder csv = new StringBuilder();
+        if (entities.size() > 1)
+            csv.append(entities.get(0).getCsvHeader());
+
+        for (Entidad entidad : entities) {
+            csv.append(System.lineSeparator());
+            csv.append(entidad.getCsv());
+        }
+
+        Files.createDirectories(path.getParent()); // crea las carpetas si no existen :)
+        Files.writeString(path, csv, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+    }
+
 }

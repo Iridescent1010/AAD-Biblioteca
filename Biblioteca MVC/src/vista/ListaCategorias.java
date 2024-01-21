@@ -132,14 +132,21 @@ public class ListaCategorias extends JInternalFrame implements VistaCategorias,M
 
     private void muestraFicha(Categoria categoria) {
         try {
-            FormMain.getInstance().getDesktopPane().add(Categorias.fichaCategoria(categoria));
-            FormMain.getInstance().getDesktopPane().selectFrame(false);
+            if (categoria == null) {
+                SwgAuxiliar.msgError("Selecciona antes una categoría");
+            }
+            if (categoria != null) {
+                FormMain.getInstance().getDesktopPane().add(Categorias.fichaCategoria(categoria));
+                FormMain.getInstance().getDesktopPane().selectFrame(false);
+            }
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
     }
     private void borrar() {
-        if (getCategoria()!=null){
+        if (getCategoria() == null) {
+            SwgAuxiliar.msgError("Selecciona antes una categoría");
+        } else {
             if (JOptionPane.showConfirmDialog(this,
                     String.format("¿Desea BORRAR la categoría: %s?",getCategoria().getCategoria()),
                     "Atención:",

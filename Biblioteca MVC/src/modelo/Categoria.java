@@ -34,6 +34,7 @@ public class Categoria extends Entidad {
         return id;
     }
 
+
     public void setId(int id) {
         this.id = id;
     }
@@ -76,5 +77,16 @@ public class Categoria extends Entidad {
     @Override
     public String toString() {
         return String.format("%d. %s",id,categoria);
+    }
+
+
+    @Override
+    public String getCsvHeader() {
+        return "id, categoria";
+    }
+
+    @Override
+    public String getCsv() {
+        return String.format("%d, %s", id, categoria);
     }
 }

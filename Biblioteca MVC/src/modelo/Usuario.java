@@ -99,4 +99,14 @@ public class Usuario extends Entidad {
         return String.format("%d. %s %s",id,nombre,apellidos);
     }
 
+    @Override
+    public String getCsvHeader() {
+        return "id, nombre, apellidos";
+    }
+
+    @Override
+    public String getCsv() {
+        return String.format("%d, %s, %s", id, nombre, apellidos);
+    }
+
 }

@@ -29,6 +29,7 @@ bin/
 .DS_Store
 
 
-### Historial ###
+### Ficheros generados ###
 *.log
 *.class
+/ficheros/csv

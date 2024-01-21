@@ -1,6 +1,7 @@
 package vista;
 
 import excepciones.CampoVacioExcepcion;
+import helper.Table;
 import modelo.Categoria;
 import modelo.Libro;
 import modelo.Prestamo;
@@ -30,7 +31,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
 
-
+    private ImageIcon backgroundImage = new ImageIcon("src/resources/background.jpeg");
 
     private JMenu mArchivo;{
         mArchivo=new JMenu("Archivo");
@@ -38,7 +39,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     }
 
     private JMenuItem miAbrir;{
-        miAbrir=new JMenuItem("Abrir..");
+        miAbrir=new JMenuItem("Abrir");
         miAbrir.setMnemonic('A');
         miAbrir.setFocusable(true);
         miAbrir.addActionListener(this);
@@ -46,12 +47,33 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         //mArchivo.add(miAbrir); TODO pendiente de implementar
     }
     private JMenuItem miGuardarLibro;{
-        miGuardarLibro =new JMenuItem("Guardar libros..");
+        miGuardarLibro =new JMenuItem("Exportar libros");
         miGuardarLibro.setMnemonic('G');
         miGuardarLibro.setFocusable(true);
         miGuardarLibro.addActionListener(this);
         miGuardarLibro.addFocusListener(this);
         mArchivo.add(miGuardarLibro);
+    }
+    private JMenuItem miGuardarCategoria;{
+        miGuardarCategoria  = new JMenuItem("Exportar categorias");
+        miGuardarCategoria.setFocusable(true);
+        miGuardarCategoria.addActionListener(this);
+        miGuardarCategoria.addFocusListener(this);
+        mArchivo.add(miGuardarCategoria);
+    }
+    private JMenuItem miGuardarUsuarios;{
+        miGuardarUsuarios  = new JMenuItem("Exportar usuarios");
+        miGuardarUsuarios.setFocusable(true);
+        miGuardarUsuarios.addActionListener(this);
+        miGuardarUsuarios.addFocusListener(this);
+        mArchivo.add(miGuardarUsuarios);
+    }
+    private JMenuItem miGuardarPrestamos;{
+        miGuardarPrestamos  = new JMenuItem("Exportar prestamos");
+        miGuardarPrestamos.setFocusable(true);
+        miGuardarPrestamos.addActionListener(this);
+        miGuardarPrestamos.addFocusListener(this);
+        mArchivo.add(miGuardarPrestamos);
     }
     private JMenuItem miConexion;{
         miConexion =new JMenuItem("Conectar");
@@ -189,10 +211,23 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
 
     private void setContenedores() {
         setLayout(new BorderLayout());
-        add(jMenuBar,BorderLayout.NORTH);
-        add(desktopPane,BorderLayout.CENTER);
-        add(miBarraDeEstado,BorderLayout.SOUTH);
+        add(jMenuBar, BorderLayout.NORTH);
+
+        // Configuración del fondo del JDesktopPane
+        desktopPane = new JDesktopPane() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+
+            }
+        };
+
+        add(desktopPane, BorderLayout.CENTER);
+        add(miBarraDeEstado, BorderLayout.SOUTH);
     }
+
 
     private void setVentana() {
         setTitle("Aplicación de gestión de una biblioteca: ");
@@ -200,6 +235,13 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setBounds(0,0,WIDTH,HEIGHT);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // Configurar imagen de fondo
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, 0, WIDTH, HEIGHT);
+        getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+
+        // Configuración del contenido
+        ((JPanel) getContentPane()).setOpaque(false);
     }
 
     public JDesktopPane getDesktopPane() {
@@ -363,6 +405,13 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         return FormMain.getInstance().getDesktopPane().getComponentCount()*25; // hasta que no se visualiza no se contabiliza
     }
 
+    /**
+     * Implementación de observer
+     * @param event Indica que tipo de cambio se ha producido
+     * @throws SQLException
+     * @throws IOException
+     * @throws CampoVacioExcepcion
+     */
     @Override
     public void update(EventType event) throws SQLException, IOException, CampoVacioExcepcion {
         switch (event) {// TODO: can be improved by using a map <EventType, Component>
@@ -446,6 +495,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource().equals(miSalir) )
             salir();
         else if (e.getSource().equals(miConexion))
@@ -467,11 +517,22 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         else if (e.getSource()== miNuevoPrestamo)
             nuevoPrestamo();
         else if (e.getSource()==miGuardarLibro) {
-            try {
-                SwgAuxiliar.grabarCSV("libro",',');
-            } catch (Exception ex){
-                SwgAuxiliar.msgExcepcion(ex);
-            }
+            grabarCsv(Table.LIBROS);
+        } else if (e.getSource()==miGuardarCategoria) {
+            grabarCsv(Table.CATEGORIAS);
+        } else if (e.getSource() == miGuardarUsuarios) {
+            grabarCsv(Table.USUARIOS);
+        } else if (e.getSource() == miGuardarPrestamos) {
+            grabarCsv(Table.PRESTAMOS);
+        }
+    }
+
+    private static void grabarCsv(Table tabla) {
+        try {
+            SwgAuxiliar.grabarCSV(tabla);
+            SwgAuxiliar.msgInfo("Tabla " + tabla.toString().toLowerCase() + " exportada con éxito");
+        } catch (Exception ex) {
+            SwgAuxiliar.msgExcepcion(ex);
         }
     }
 

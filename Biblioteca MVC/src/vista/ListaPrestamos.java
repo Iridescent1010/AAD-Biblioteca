@@ -13,8 +13,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.util.List;
+
 /**
  * Formulario que muestra lista todos los registros asociados a una consulta relacionada con la tabla préstamos
+ *
  * @author AGE
  * @version 2
  */
@@ -24,32 +26,42 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
     private static final int HEIGHT = 500;
     private List<Prestamo> prestamos;
     private PresentadorPrestamo presentador;
-    private JMenuItem miFicha; {
+    private JMenuItem miFicha;
+
+    {
         miFicha = new JMenuItem("Ficha");
         miFicha.setMnemonic('F');
         miFicha.addActionListener(this);
     }
 
-    private JMenuItem miNuevo; {
+    private JMenuItem miNuevo;
+
+    {
         miNuevo = new JMenuItem("Nuevo");
         miNuevo.setMnemonic('N');
         miNuevo.addActionListener(this);
     }
 
-    private JMenuItem miBorra; {
+    private JMenuItem miBorra;
+
+    {
         miBorra = new JMenuItem("Borra");
         miBorra.setMnemonic('B');
         miBorra.addActionListener(this);
     }
 
-    private JPopupMenu jPopupMenu; {
+    private JPopupMenu jPopupMenu;
+
+    {
         jPopupMenu = new JPopupMenu();
         jPopupMenu.add(miFicha);
         jPopupMenu.add(miNuevo);
         jPopupMenu.add(miBorra);
     }
 
-    private JTable jTable; {
+    private JTable jTable;
+
+    {
         jTable = new JTable();
         jTable.addMouseListener(this);
         jTable.addFocusListener(this);
@@ -58,7 +70,7 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    private JScrollPane scrollPane= new JScrollPane(jTable);
+    private JScrollPane scrollPane = new JScrollPane(jTable);
 
     @Override
     public void lanzar() {
@@ -67,13 +79,13 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
 
     @Override
     public void setPresentador(PresentadorPrestamo presentador) throws Exception {
-        this.presentador=presentador;
+        this.presentador = presentador;
         presentador.listaAllPrestamos();
     }
 
     @Override
     public Prestamo getPrestamo() {
-        if (jTable.getSelectedRow()==-1){
+        if (jTable.getSelectedRow() == -1) {
             return null;
         }
         return prestamos.get(jTable.getSelectedRow());
@@ -81,14 +93,16 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
 
     @Override
     public void setPrestamos(List<Prestamo> listaPrestamos) {
-        this.prestamos=listaPrestamos;
+        this.prestamos = listaPrestamos;
         muestraTabla();
     }
+
     @Override
     public void setCategorias(List<Categoria> categorias) {
         // sin implementación
     }
-    public ListaPrestamos()  {
+
+    public ListaPrestamos() {
         setVentana();
         setContenedores();
         addKeyListener(this);
@@ -141,7 +155,11 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
 
     private void muestraFicha(Prestamo prestamo) {
         try {
-            FormMain.getInstance().getDesktopPane().add(Prestamos.fichaPrestamo(prestamo));
+            if (prestamo == null)
+                SwgAuxiliar.msgError("Selecciona antes un préstamo");
+            else
+                FormMain.getInstance().getDesktopPane().add(Prestamos.fichaPrestamo(prestamo));
+
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
@@ -149,17 +167,17 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
     }
 
     private void borrar(Prestamo prestamo) {
-        if (prestamo !=null){
-            if (JOptionPane.showConfirmDialog(this,
-                    String.format("¿Desea BORRAR el préstamo:\n%s\n%s?",
-                            prestamo.getObjLibro(), prestamo.getObjUsuario()),
-                    "Atención:",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                try {
-                    presentador.borra();
-                } catch (Exception e) {
-                    SwgAuxiliar.msgExcepcion(e);
-                }
+        if (prestamo == null) {
+            SwgAuxiliar.msgError("Selecciona antes un préstamo");
+        } else if (JOptionPane.showConfirmDialog(this,
+                String.format("¿Desea BORRAR el préstamo:\n%s\n%s?",
+                        prestamo.getObjLibro(), prestamo.getObjUsuario()),
+                "Atención:",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                presentador.borra();
+            } catch (Exception e) {
+                SwgAuxiliar.msgExcepcion(e);
             }
         }
 
@@ -207,7 +225,7 @@ public class ListaPrestamos extends JInternalFrame implements VistaPrestamos, Mo
             dispose();
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
             muestraFicha(getPrestamo());
-        else if (e.getKeyCode()==KeyEvent.VK_DELETE)
+        else if (e.getKeyCode() == KeyEvent.VK_DELETE)
             borrar(getPrestamo());
     }
 

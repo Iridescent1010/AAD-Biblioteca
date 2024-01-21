@@ -1,5 +1,6 @@
 package vista.helper;
 
+import helper.Table;
 import modelo.dao.helper.Sql;
 import vista.FormMain;
 import javax.swing.*;
@@ -33,6 +34,10 @@ public class SwgAuxiliar {
         JOptionPane.showMessageDialog(parent,msg,"Error: ",JOptionPane.ERROR_MESSAGE);
     }
 
+    public static void msgInfo(String msg) {
+        JOptionPane.showMessageDialog(FormMain.getInstance(), msg, "Información: ", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     /**
      * Para asignar a un panel que los objetos que reciben el foco puedan responder al enter y al tab
      * @param panel objeto panel donde actuara las teclas enter y tab
@@ -53,11 +58,10 @@ public class SwgAuxiliar {
     /**
      * Permitirá grabar el contenido de una tabla en un fichero csv
      * dentro de la carpeta ficheros/ListaDeTABLA.csv
-     * @param tabla nombre de la tabla a grabar todo el contenido
-     * @param delimiter caracter delimitador de campos
+     * @param table tabla a grabar todo el contenido
      */
-    public static void grabarCSV(String tabla,char delimiter) throws Exception {
-        Path path = Paths.get("ficheros/ListaDe"+tabla.toUpperCase()+".csv");
-        Sql.importCSV(path,tabla,delimiter);
+    public static void grabarCSV(Table table) throws Exception {
+        Path path = Paths.get("ficheros/csv/"+table.toString().toLowerCase()+".csv");
+        Sql.importCsvHibernate(path, table);
     }
 }
