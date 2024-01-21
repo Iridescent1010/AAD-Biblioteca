@@ -110,6 +110,14 @@ para dividir la **lógica** del programa en tres elementos conectados entre sí:
 - **Controlador:** Se encarga de conectar estas dos capas
     - En nuestro caso las clases `Presentador`
 
+Este patrón de diseño es ampliamente usado por varias razones.
+
+1. Permite cambiar la vista sin que sea necesario intervenir en las otras dos capas (por ejemplo, navegador web o aplicación móvil)
+    - De esta forma las aplicaciones son **más escalables**
+2. Permite **dividir** una aplicación extensa en tres capas más **manejables**
+    - Por ejemplo, en nuestro proyecto no tuvimos que hacer cambios en la vista
+      al modificar la capa del modelo (jdbc por Hibernate)
+
 ## ✨ Nuevas funcionalidades
 
 - Exportar tablas a csv
