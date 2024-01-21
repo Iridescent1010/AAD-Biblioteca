@@ -78,7 +78,6 @@ public class SeleccionaLibro extends JDialog implements VistaLibros, FocusListen
     public SeleccionaLibro(Frame owner, String title, boolean modal, BusquedaLibro busquedaLibro) {
         super(owner,title,modal);
         this.busquedaLibro=busquedaLibro;
-        System.out.println(busquedaLibro);
         setVentana();
         setContenedores();
         addKeyListener(this);
