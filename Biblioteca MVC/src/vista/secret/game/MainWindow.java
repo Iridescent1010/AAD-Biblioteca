@@ -1,11 +1,8 @@
-package auto.chincho;
+package vista.secret.game;
 
-import chincho.merinde.*;
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.net.URL;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 

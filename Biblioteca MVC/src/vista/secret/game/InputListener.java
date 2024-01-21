@@ -1,6 +1,5 @@
-package auto.chincho;
+package vista.secret.game;
 
-import chincho.merinde.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;

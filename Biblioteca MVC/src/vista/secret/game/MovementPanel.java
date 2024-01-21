@@ -1,6 +1,5 @@
-package auto.chincho;
+package vista.secret.game;
 
-import chincho.merinde.*;
 import java.awt.*;
 import java.awt.geom.*;
 import java.net.URL;
