@@ -30,6 +30,9 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
 
+    private ImageIcon backgroundImage = new ImageIcon("C:\\Users\\saxov\\OneDrive\\Escritorio\\2º Desarrollo de aplicaciones Multiplataforma\\Acceso a Datos\\AAD-Biblioteca\\Biblioteca MVC\\src\\vista\\descarga.jpeg");
+
+
 
 
     private JMenu mArchivo;{
@@ -189,10 +192,23 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
 
     private void setContenedores() {
         setLayout(new BorderLayout());
-        add(jMenuBar,BorderLayout.NORTH);
-        add(desktopPane,BorderLayout.CENTER);
-        add(miBarraDeEstado,BorderLayout.SOUTH);
+        add(jMenuBar, BorderLayout.NORTH);
+
+        // Configuración del fondo del JDesktopPane
+        desktopPane = new JDesktopPane() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+
+            }
+        };
+
+        add(desktopPane, BorderLayout.CENTER);
+        add(miBarraDeEstado, BorderLayout.SOUTH);
     }
+
 
     private void setVentana() {
         setTitle("Aplicación de gestión de una biblioteca: ");
@@ -200,6 +216,13 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setBounds(0,0,WIDTH,HEIGHT);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // Configurar imagen de fondo
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, 0, WIDTH, HEIGHT);
+        getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+
+        // Configuración del contenido
+        ((JPanel) getContentPane()).setOpaque(false);
     }
 
     public JDesktopPane getDesktopPane() {
