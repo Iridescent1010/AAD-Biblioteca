@@ -100,6 +100,11 @@ interface Observable {
 
 ## 🕹 Modelo-vista-controlador
 
+## Nuevas funcionalidades
+
+- Exportar tablas a csv
+- Imagen de fondo
+
 ## 🏔 Dificultades encontradas
 
 1. Problemas al intentar **pasar el proyecto a maven**

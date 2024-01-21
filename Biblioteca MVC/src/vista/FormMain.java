@@ -31,7 +31,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
 
-    private ImageIcon backgroundImage = new ImageIcon("C:\\Users\\saxov\\OneDrive\\Escritorio\\2º Desarrollo de aplicaciones Multiplataforma\\Acceso a Datos\\AAD-Biblioteca\\Biblioteca MVC\\src\\vista\\descarga.jpeg");
+    private ImageIcon backgroundImage = new ImageIcon("src/resources/background.jpeg");
 
     private JMenu mArchivo;{
         mArchivo=new JMenu("Archivo");
@@ -39,7 +39,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     }
 
     private JMenuItem miAbrir;{
-        miAbrir=new JMenuItem("Abrir..");
+        miAbrir=new JMenuItem("Abrir");
         miAbrir.setMnemonic('A');
         miAbrir.setFocusable(true);
         miAbrir.addActionListener(this);
