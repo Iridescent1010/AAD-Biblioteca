@@ -9,11 +9,11 @@
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.username">admin</property>
     <property name="connection.password">pwd13</property>
-    <mapping class="modelo.old.CategoriaDTO"/>
-      <mapping class="modelo.old.HistoricoDTO"/>
-    <mapping class="modelo.old.LibroDTO"/>
-    <mapping class="modelo.old.PrestamosDTO"/>
-    <mapping class="modelo.old.UsuarioDTO"/>
+    <mapping class="modelo.dao.CategoriaDAO"/>
+    <mapping class="modelo.dao.HistoricoDAO"/>
+    <mapping class="modelo.dao.LibroDAO"/>
+    <mapping class="modelo.dao.PrestamoDAO"/>
+    <mapping class="modelo.dao.UsuarioDAO"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

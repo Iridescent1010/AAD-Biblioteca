@@ -31,7 +31,7 @@ public class FormMain extends JFrame implements ActionListener, FocusListener, W
     private static final int HEIGHT = 756;
     private JDesktopPane desktopPane = new JDesktopPane();
 
-    private ImageIcon backgroundImage = new ImageIcon("src/resources/background.jpeg");
+    private ImageIcon backgroundImage = new ImageIcon("imagenes/biblio.jpg");
 
     private JMenu mArchivo;{
         mArchivo=new JMenu("Archivo");

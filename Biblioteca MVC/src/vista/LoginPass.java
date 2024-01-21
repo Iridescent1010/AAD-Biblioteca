@@ -1,5 +1,8 @@
 package vista;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import singleton.ConexionMySQL;
 import singleton.Configuracion;
 import vista.helper.SwgAuxiliar;
@@ -18,6 +21,9 @@ import java.awt.event.*;
 public class LoginPass extends JDialog implements ActionListener, WindowListener, KeyListener, FocusListener {
     private static final int WIDTH = 350;
     private static final int HEIGHT = 226;
+
+    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
     private Configuracion myConf;{
         try {
             myConf=Configuracion.getInstance();
@@ -139,7 +145,7 @@ public class LoginPass extends JDialog implements ActionListener, WindowListener
             salir();
     }
 
-    private boolean conectar() {
+   /* private boolean conectar() {
         boolean bSalir=false;
         myConf.setUser(eUser.getText());
         try{
@@ -149,6 +155,25 @@ public class LoginPass extends JDialog implements ActionListener, WindowListener
         } catch (Exception e) {
             SwgAuxiliar.msgExcepcion(e);
         }
+        return bSalir;
+    }*/
+    private boolean conectar() {
+        boolean bSalir = false;
+        myConf.setUser(eUser.getText());
+
+        try {
+            myConf.setPassword(String.valueOf(ePass.getPassword()));
+
+            // Abre una nueva sesión de Hibernate
+            try (Session session = sessionFactory.openSession()) {
+                //La conexión fue exitosa
+                bSalir = true;
+            }
+
+        } catch (Exception e) {
+            SwgAuxiliar.msgExcepcion(e);
+        }
+
         return bSalir;
     }
 
