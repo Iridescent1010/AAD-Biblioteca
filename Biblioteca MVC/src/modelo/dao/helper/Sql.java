@@ -99,7 +99,7 @@ public class Sql {
     // He añadido un método getCsv() a la clase Entidad
     private static void writeCsv(Path path, List<? extends Entidad> entities) throws IOException {
         StringBuilder csv = new StringBuilder();
-        if (entities.size() > 1)
+        if (!entities.isEmpty())
             csv.append(entities.get(0).getCsvHeader());
 
         for (Entidad entidad : entities) {
@@ -108,7 +108,8 @@ public class Sql {
         }
 
         Files.createDirectories(path.getParent()); // crea las carpetas si no existen :)
-        Files.writeString(path, csv, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+        Files.writeString(path, csv, StandardCharsets.UTF_8, StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING);
     }
 
 }
