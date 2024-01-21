@@ -65,22 +65,25 @@ classDiagram
 direction TB
 
 Observable <|-- ObservableImpl 
-Observable *-- Observer : agregación
+ObservableImpl *-- Observer : agregación
 Observer <|-- ObserverImplA  
 Observer <|-- ObserverImplB
 note for Observable "Este es el objeto que cambia.\nPor ejemplo, una categoría.\n\n notify() es llamado cuando\n se produce un cambio"
   
   class Observable{
-    -observers: Observer[]
-    +setObserver(observer: Observer)
+  <<interface>>
+    +addObserver(observer: Observer)
     +deleteObserver(observer: Observer)
     +notify() 
   }
   class ObservableImpl {
-    +getState()
-    +setState(state: any)
+    -observers: Observer[]
+    +addObserver(observer: Observer)
+    +deleteObserver(observer: Observer)
+    +notify() 
   }
   class Observer{
+  <<interface>>
     +update()
   }
   class ObserverImplA{
