@@ -110,7 +110,10 @@ interface Observable {
 
 - Interfaz `Observable`/ subject
   - Métodos: `notify()`
+  - Métodos: `addObserver(oberver o)`
+  - Métodos: `deleteobserver(oberver o)`
 - Interfaz `Observer`
+  - Métodos: `update()`
 
 ## 🕹 Modelo-vista-controlador
 
