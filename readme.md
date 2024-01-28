@@ -47,9 +47,26 @@ Hay que adaptar una aplicación construida previamente para que utilice el frame
     - Creamos las nuevas DAO con Hibernate implementado
 
 ### Conexión
-    - Modificación en los xml
+    - Modificación en los xml (eliminar campos usuario y contraseña)
     - Implementacion del EntityManager
-    - Conexión con Session
+    - Conexión con EntityManager
+
+**Código que controla la conexión**
+```java
+private static EntityManagerFactory createEntityManagerFactory() {
+      try {
+          suppressWarnings();
+          Map<String, Object> properties = new HashMap<>();
+          properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // Reemplaza con el dialecto de tu base de datos
+          properties.put("javax.persistence.jdbc.user", Configuracion.getInstance().getUser());
+          properties.put("javax.persistence.jdbc.password", Configuracion.getInstance().getPassword());
+
+          return new HibernatePersistenceProvider() .createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
+      } catch (Exception e) {
+          return null;
+      }
+}
+```
 
 ## 🔭 Patrón Observer
 
